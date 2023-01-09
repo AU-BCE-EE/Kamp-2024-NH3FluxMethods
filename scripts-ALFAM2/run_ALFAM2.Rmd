@@ -1,0 +1,52 @@
+---
+title: 'Model call record'
+output: pdf_document
+classoption: landscape
+author: Sasha D. Hafner
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+Check package version.
+
+```{r}
+packageVersion('ALFAM2')
+```
+
+Parameter values.
+
+```{r}
+ALFAM2pars02
+```
+
+Check input data.
+
+```{r}
+dfsumm(as.data.frame(bdat)[, c('pmid', 'tan.app', 'app.mthd', 'app.rate.ni', 'man.dm', 'air.temp', 'wind.2m', 'man.ph', 'rain.rate')])
+table(bdat$app.start, bdat$man.ph, exclude = NULL)
+table(bdat$file)
+```
+
+Set missing pH to 7.8.
+
+```{r}
+bdat$man.ph[is.na(bdat$man.ph)] <- 7.8
+```
+
+Run model with set 2 parameters
+
+```{r}
+dpred1 <- alfam2(as.data.frame(bdat), pars = ALFAM2pars01, app.name = 'tan.app', time.name = 'cta', group = 'pmid', prep = TRUE)
+dpred2 <- alfam2(as.data.frame(bdat), pars = ALFAM2pars02, app.name = 'tan.app', time.name = 'cta', group = 'pmid', prep = TRUE)
+```
+
+Add to bLS data frame for now
+
+```{r}
+names(dpred1) <- paste0(names(dpred1), '.pred1')
+bpred <- cbind(bdat, dpred1[, c('j.pred1', 'e.pred1', 'er.pred1')])
+names(dpred2) <- paste0(names(dpred2), '.pred2')
+bpred <- cbind(bpred, dpred2[, c('j.pred2', 'e.pred2', 'er.pred2')])
+```
+
+
+
