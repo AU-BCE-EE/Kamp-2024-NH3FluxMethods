@@ -3,7 +3,7 @@ title: 'Model call record'
 output: pdf_document
 classoption: landscape
 author: Sasha D. Hafner
-date: "`r format(Sys.time(), '%d %B, %Y')`"
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M')`"
 ---
 
 Check package version.
@@ -24,12 +24,6 @@ Check input data.
 dfsumm(as.data.frame(bdat)[, c('pmid', 'tan.app', 'app.mthd', 'app.rate.ni', 'man.dm', 'air.temp', 'wind.2m', 'man.ph', 'rain.rate')])
 table(bdat$app.start, bdat$man.ph, exclude = NULL)
 table(bdat$file)
-```
-
-Set missing pH to 7.8.
-
-```{r}
-bdat$man.ph[is.na(bdat$man.ph)] <- 7.8
 ```
 
 Run model with set 2 parameters

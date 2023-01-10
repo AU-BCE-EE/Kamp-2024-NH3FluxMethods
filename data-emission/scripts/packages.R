@@ -1,7 +1,7 @@
 
 library(data.table)
 
-sink('../logs/versions.txt')
+sink('../logs/R-versions-data.txt')
   print(sessionInfo())
 sink()
 

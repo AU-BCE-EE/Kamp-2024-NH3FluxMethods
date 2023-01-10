@@ -18,8 +18,8 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] knitr_1.39        lubridate_1.8.0   ggplot2_3.3.6     ALFAM2_2.14.11   
-[5] data.table_1.14.2 nvimcom_0.9-82   
+[1] knitr_1.39        ggplot2_3.3.6     ALFAM2_2.14.11    data.table_1.14.2
+[5] nvimcom_0.9-82   
 
 loaded via a namespace (and not attached):
  [1] Rcpp_1.0.9       pillar_1.7.0     compiler_4.2.1   tools_4.2.1     

@@ -3,7 +3,7 @@ title: 'Model call record'
 output: pdf_document
 classoption: landscape
 author: Sasha D. Hafner
-date: "09 January, 2023"
+date: "10 January, 2023 10:10"
 ---
 
 Check package version.
@@ -61,12 +61,12 @@ dfsumm(as.data.frame(bdat)[, c('pmid', 'tan.app', 'app.mthd', 'app.rate.ni', 'ma
 ##                                                                            
 ##                    wind.2m  man.ph rain.rate
 ## Class              numeric numeric   numeric
-## Minimum             0.0765     7.9         0
+## Minimum             0.0765     7.7         0
 ## Maximum               5.74     7.9       0.4
-## Mean                  2.03     7.9   0.00146
-## Unique (excld. NA)     811       1         3
-## Missing values           0     342         0
-## Sorted               FALSE    TRUE     FALSE
+## Mean                  2.03    7.82   0.00146
+## Unique (excld. NA)     811       2         3
+## Missing values           0       0         0
+## Sorted               FALSE   FALSE     FALSE
 ## 
 ```
 
@@ -76,9 +76,9 @@ table(bdat$app.start, bdat$man.ph, exclude = NULL)
 
 ```
 ##                      
-##                       7.9 <NA>
-##   2021-08-20 10:58:00 478    0
-##   2021-11-09 10:15:00   0  342
+##                       7.7 7.9
+##   2021-08-20 10:58:00   0 478
+##   2021-11-09 10:15:00 342   0
 ```
 
 ```r
@@ -89,13 +89,6 @@ table(bdat$file)
 ## 
 ## ../../data-submitted/03/AU/ALFAM2_template_6_1_eGylle_JK_3.xlsx 
 ##                                                             820
-```
-
-Set missing pH to 7.8.
-
-
-```r
-bdat$man.ph[is.na(bdat$man.ph)] <- 7.8
 ```
 
 Run model with set 2 parameters
