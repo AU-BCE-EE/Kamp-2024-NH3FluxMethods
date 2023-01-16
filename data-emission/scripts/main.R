@@ -1,5 +1,5 @@
 # Download ALFAM2 data, subset to this study, and save copy
-# This is only run when a new version of measurement data are needed (e.g., when corrections have been submitted to ALFAM2 database)
+# This is only run when a new version of measurement data is needed (e.g., when corrections have been submitted to ALFAM2 database)
 
 rm(list = ls())
 
