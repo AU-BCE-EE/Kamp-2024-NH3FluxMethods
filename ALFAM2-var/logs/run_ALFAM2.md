@@ -3,7 +3,7 @@ title: 'Model call record'
 output: pdf_document
 classoption: landscape
 author: Sasha D. Hafner
-date: "15 January, 2023 19:53"
+date: "15 January, 2023 20:55"
 ---
 
 Check package version.
@@ -14,7 +14,7 @@ packageVersion('ALFAM2')
 ```
 
 ```
-## [1] '2.16'
+## [1] '2.17'
 ```
 
 Parameter values.
@@ -47,7 +47,27 @@ dfsumm(as.data.frame(idat)[, c('pmid', 'tan.app', 'app.mthd', 'app.rate.ni', 'ma
 ```
 
 ```
-## Error in dfsumm(as.data.frame(idat)[, c("pmid", "tan.app", "app.mthd", : could not find function "dfsumm"
+## 
+##  13249 rows and 9 columns
+##  13032 unique rows
+##                         pmid tan.app  app.mthd app.rate.ni  man.dm air.temp
+## Class              character numeric character     numeric numeric  numeric
+## Minimum                    1     8.4        bc           0     0.6    -2.19
+## Maximum                  999     602        ts         138    11.9     37.8
+## Mean                    <NA>    82.3      <NA>        44.3    4.79     14.2
+## Unique (excld. NA)       869     446         4         219     257     2684
+## Missing values             0       0         0           0       0        0
+## Sorted                 FALSE   FALSE     FALSE       FALSE   FALSE    FALSE
+##                                                                            
+##                    wind.2m  man.ph rain.rate
+## Class              numeric numeric   numeric
+## Minimum             0.0256    6.54         0
+## Maximum               28.4    9.02      71.2
+## Mean                  2.46    7.54    0.0688
+## Unique (excld. NA)    4033     111       589
+## Missing values           0       0         0
+## Sorted               FALSE   FALSE     FALSE
+## 
 ```
 
 ```r
@@ -56,10 +76,12 @@ table(idat$file)
 
 ```
 ## 
+##  ../../data-submitted/03/AU/ALFAM2_template_5_2_211012_JP_18ABC.xlsx 
+##                                                                 1788 
 ##      ../../data-submitted/03/AU/ALFAM2_template_6_1_eGylle_JK_3.xlsx 
 ##                                                                  336 
 ##           ../../data-submitted/03/UNINA/ALFAM2_UNINA_5_6_1_ver6.xlsx 
-##                                                                   33 
+##                                                                  115 
 ## ../../data-submitted/03/UNINI/ALFAM2_template_6.1_ARMOSA2013_V1.xlsx 
 ##                                                                  284 
 ##                             1 ALFAM2_96TVNH3_DERVAL(44)_2011 v4.xlsx 
@@ -71,7 +93,7 @@ table(idat$file)
 ##                                            8 ALFAM_LI94_SURF v5.xlsx 
 ##                                                                  768 
 ##                                                          ALFAM1.xlsx 
-##                                                                  870 
+##                                                                 2368 
 ##                                           ALFAM2 CAU-LU FTIR v2.xlsx 
 ##                                                                  566 
 ##                                             ALFAM2_ADAS_RRes_v2.xlsx 
@@ -79,7 +101,11 @@ table(idat$file)
 ##                                                       ALFAM2_AT.xlsx 
 ##                                                                  102 
 ##                                                    ALFAM2_AU_v5.xlsx 
-##                                                                  210 
+##                                                                  285 
+##                                           ALFAM2_Chantigny_2000.xlsx 
+##                                                                  132 
+##                                      ALFAM2_Chantigny_2004_2005.xlsx 
+##                                                                 2091 
 ##                                     ALFAM2_data_NL-grass9703_v2.xlsx 
 ##                                                                  654 
 ##                                               ALFAM2_NMI-WUR_v3.xlsx 
@@ -91,7 +117,7 @@ table(idat$file)
 ##                                               ALFAM2_Teagasc_v5.xlsx 
 ##                                                                  314 
 ##                                               Bittman ALFAM2 v5.xlsx 
-##                                                                   25
+##                                                                  537
 ```
 
 Run model with set 2 parameters

@@ -31,40 +31,5 @@ Run model with set 2 parameters
 # NTS: should use cat for eGylle data
 dpred1 <- alfam2(as.data.frame(idat), pars = ALFAM2pars01, app.name = 'tan.app', time.name = 'ct', group = 'pmid', prep = TRUE)
 dpred2 <- alfam2(as.data.frame(idat), pars = ALFAM2pars02, app.name = 'tan.app', time.name = 'ct', group = 'pmid', prep = TRUE)
-
-idat[200:212, c('pmid', 'tan.app')]
-
-dpred2[200:212, ]
-
-which(dpred2$pmid == 492)
-x <- subset(dpred2, er > 1)
-head(x)
-
-y <- subset(idat, pmid == 492)
-pp <- alfam2(as.data.frame(y), pars = ALFAM2pars02, app.name = 'tan.app', time.name = 'ct', group = 'pmid', prep = TRUE)
-pp
-
-x <- subset(idat, pmid %in% 491:492)
-y2 <- alfam2(as.data.frame(x), pars = ALFAM2pars02, app.name = 'tan.app', time.name = 'ct', group = 'pmid', prep = TRUE)
-y2
-
-ce1 <- rcpp_calcEmis(cta = dat[, time.name], F0a = dat[, "__f0"] *
-    dat[1, app.name], S0a = (1 - dat[, "__f0"]) * dat[, app.name],
-    r1a = dat[, "__r1"], r2a = dat[, "__r2"], r3a = dat[, "__r3"],
-    f4a = dat[, "__f4"], r5a = dat[, "__r5"], gstart = gstart,
-    gend = gend)
-
-ce2 <- rcpp_calcEmis(cta = dat[, time.name], F0a = dat[, "__f0"] *
-    dat[1, app.name], S0a = (1 - dat[, "__f0"]) * dat[, app.name],
-    r1a = dat[, "__r1"], r2a = dat[, "__r2"], r3a = dat[, "__r3"],
-    f4a = dat[, "__f4"], r5a = dat[, "__r5"], gstart = gstart,
-    gend = gend)
-
-
-dat <- dat[-1:-8, ]
-dat <- dat[-1, ]
-gstart <- 0
-gend <- 12
-
 ```
 

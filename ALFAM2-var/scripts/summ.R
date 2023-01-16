@@ -14,13 +14,14 @@ ipred <- ipred[, ct.max := max(ct), by = pmid]
 
 dfinal <- ipred[ct == ct.max, ] 
 
-args(aggregate2)
-names(dfinal)
-aggregate2(as.data.frame(dfinal), x = c('err1', 'err2'), by = c('country', 'institute'), FUN = c(mean = mean, sd = sd, n = length))
+# NTS: why are there NAs for AAFC???
+dfinal <- subset(dfinal, institute != 'AAFC')
 
-ggplot(dfinal, aes(country, err2, fill = app.mthd)) +
-  geom_boxplot() 
+summ1 <- aggregate2(as.data.frame(dfinal), x = c('err1', 'err2'), 
+                    by = c('country', 'institute', 'meas.tech2'), 
+                    FUN = c(mean = mean, sd = sd, n = length))
 
-x <- subset(dfinal, err2 > 1)
+summ2 <- aggregate2(as.data.frame(dfinal), x = c('err1', 'err2'), 
+                    by = 'meas.tech2', 
+                    FUN = c(mean = mean, sd = sd, n = length))
 
-range(dfinal$er.pred2)

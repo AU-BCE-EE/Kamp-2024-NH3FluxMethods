@@ -25,7 +25,7 @@ pd2 <- pdat[!is.na(pdat$e.24) &
           pdat$app.mthd != 'pi' &
           pdat$app.mthd != 'cs' &
           pdat$app.mthd != 'bss' &
-          pdat$meas.tech2 == 'micro met' &
+          pdat$meas.tech2 %in% c('micro met', 'wt') &
           !pdat$inst %in% c(102, 107, 108) & # Exclude AUN, old Swiss (IUL/FAT), and JTI
           pdat$pmid != 1526 & # See rows 1703 and 1728 and others in MU data. Check with Marco
           pdat$pmid != 1183 & # Closed slot negative emission
