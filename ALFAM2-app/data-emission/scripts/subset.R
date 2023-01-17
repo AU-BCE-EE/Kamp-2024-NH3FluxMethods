@@ -9,4 +9,5 @@ idat <- subset(idat, pmid %in% unique(pdat$pmid))
 
 # Get pmid for including in paper
 
-pmids <- aggregate(pdat$pmid, list(pdat$institute, pdat$meas.tech), FUN = function(x) paste(x, collapse = ', '))
+pdat$meas.tech3 <- paste(pdat$meas.tech, pdat$meas.tech.det)
+pmids <- aggregate(pdat$pmid, list(pdat$institute, pdat$meas.tech3), FUN = function(x) paste(x, collapse = ', '))
