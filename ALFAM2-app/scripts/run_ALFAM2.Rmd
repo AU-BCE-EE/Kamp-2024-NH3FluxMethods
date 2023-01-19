@@ -22,6 +22,7 @@ Check input data.
 
 ```{r}
 dfsumm(as.data.frame(bdat)[, c('pmid', 'tan.app', 'app.mthd', 'app.rate.ni', 'man.dm', 'air.temp', 'wind.2m', 'man.ph', 'rain.rate')])
+dfsumm(as.data.frame(bdat)[, c('bLS', 'wt', 'wind.bLS', 'wind.wt', 'wind.2m')])
 table(bdat$app.start, bdat$man.ph, exclude = NULL)
 table(bdat$file)
 ```
@@ -31,6 +32,7 @@ Run model with set 2 parameters
 ```{r}
 dpred1 <- alfam2(as.data.frame(bdat), pars = ALFAM2pars01, app.name = 'tan.app', time.name = 'cta', group = 'pmid', prep = TRUE)
 dpred2 <- alfam2(as.data.frame(bdat), pars = ALFAM2pars02, app.name = 'tan.app', time.name = 'cta', group = 'pmid', prep = TRUE)
+dpredx <- alfam2(as.data.frame(bdat), pars = parsx, app.name = 'tan.app', time.name = 'cta', group = 'pmid', prep = TRUE)
 ```
 
 Add to bLS data frame for now
@@ -40,6 +42,8 @@ names(dpred1) <- paste0(names(dpred1), '.pred1')
 bpred <- cbind(bdat, dpred1[, c('j.pred1', 'e.pred1', 'er.pred1')])
 names(dpred2) <- paste0(names(dpred2), '.pred2')
 bpred <- cbind(bpred, dpred2[, c('j.pred2', 'e.pred2', 'er.pred2')])
+names(dpredx) <- paste0(names(dpredx), '.predx')
+bpred <- cbind(bpred, dpredx[, c('j.predx', 'e.predx', 'er.predx')])
 ```
 
 

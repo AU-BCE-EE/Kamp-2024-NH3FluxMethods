@@ -22,10 +22,15 @@ for (i in unique(idat$pmid)) {
   idat[idat$pmid == i, 'e.cum.pred2'] <- cumsum(eint)
   idat[idat$pmid == i, 'j.NH3.pred2'] <- eint / idat[idat$pmid == i, 'dt']
 
-  # Repeat for par set 1
+  # Repeat for par set 1 and X
   idat[idat$pmid == i, 'e.rel.pred1'] <- erp <- approx(c(0, bb$cta), c(0, bb$er.pred1), xout = dd$cta)$y
   idat[idat$pmid == i, 'e.int.pred1'] <- eint <- diff(c(0, erp)) * idat[idat$pmid == i, 'app.rate']
   idat[idat$pmid == i, 'e.cum.pred1'] <- cumsum(eint)
   idat[idat$pmid == i, 'j.NH3.pred1'] <- eint / idat[idat$pmid == i, 'dt']
+
+  idat[idat$pmid == i, 'e.rel.predx'] <- erp <- approx(c(0, bb$cta), c(0, bb$er.predx), xout = dd$cta)$y
+  idat[idat$pmid == i, 'e.int.predx'] <- eint <- diff(c(0, erp)) * idat[idat$pmid == i, 'app.rate']
+  idat[idat$pmid == i, 'e.cum.predx'] <- cumsum(eint)
+  idat[idat$pmid == i, 'j.NH3.predx'] <- eint / idat[idat$pmid == i, 'dt']
 
 }

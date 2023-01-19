@@ -3,7 +3,7 @@ title: 'Model call record'
 output: pdf_document
 classoption: landscape
 author: Sasha D. Hafner
-date: "10 January, 2023 10:10"
+date: "19 January, 2023 10:14"
 ---
 
 Check package version.
@@ -14,7 +14,7 @@ packageVersion('ALFAM2')
 ```
 
 ```
-## [1] '2.14.11'
+## [1] '2.17'
 ```
 
 Parameter values.
@@ -67,6 +67,25 @@ dfsumm(as.data.frame(bdat)[, c('pmid', 'tan.app', 'app.mthd', 'app.rate.ni', 'ma
 ## Unique (excld. NA)     811       2         3
 ## Missing values           0       0         0
 ## Sorted               FALSE   FALSE     FALSE
+## 
+```
+
+```r
+dfsumm(as.data.frame(bdat)[, c('bLS', 'wt', 'wind.bLS', 'wind.wt', 'wind.2m')])
+```
+
+```
+## 
+##  820 rows and 5 columns
+##  811 unique rows
+##                        bLS      wt wind.bLS wind.wt wind.2m
+## Class              logical logical  numeric numeric numeric
+## Minimum               TRUE   FALSE    0.277       0  0.0765
+## Maximum               TRUE   FALSE      2.4       0    5.74
+## Mean                1 TRUE  0 TRUE     1.35       0    2.03
+## Unique (excld. NA)       1       1      811       1     811
+## Missing values           0       0        0       0       0
+## Sorted                TRUE    TRUE    FALSE    TRUE   FALSE
 ## 
 ```
 
@@ -168,6 +187,14 @@ dpred2 <- alfam2(as.data.frame(bdat), pars = ALFAM2pars02, app.name = 'tan.app',
 ##   man.ph.r3
 ```
 
+```r
+dpredx <- alfam2(as.data.frame(bdat), pars = parsx, app.name = 'tan.app', time.name = 'cta', group = 'pmid', prep = TRUE)
+```
+
+```
+## User-supplied parameters are being used.
+```
+
 Add to bLS data frame for now
 
 
@@ -176,6 +203,8 @@ names(dpred1) <- paste0(names(dpred1), '.pred1')
 bpred <- cbind(bdat, dpred1[, c('j.pred1', 'e.pred1', 'er.pred1')])
 names(dpred2) <- paste0(names(dpred2), '.pred2')
 bpred <- cbind(bpred, dpred2[, c('j.pred2', 'e.pred2', 'er.pred2')])
+names(dpredx) <- paste0(names(dpredx), '.predx')
+bpred <- cbind(bpred, dpredx[, c('j.predx', 'e.predx', 'er.predx')])
 ```
 
 
