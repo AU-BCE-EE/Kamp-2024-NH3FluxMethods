@@ -11,5 +11,6 @@ ct|Time since application (c for cumulative) based on reported interval duration
 cta|Time since application (c for cumulative, a for application) based on reported interval date/time and application date/time if available|numeric|h|
 e.cum|Cumulative NH3 emission to the end of measurement interval|numeric|kg/ha as N|
 |e.rel|Cumulative relative NH3 emission to the end of measurement interval|numeric|fraction of applied TAN|
+j.NH3|"Average emission flux of NH3 in measurement interval"|numeric|"kg/(ha-h) as N"|
 
 The suffixes `.pred1` and `.pred2` mean that values are predicted by the ALFAM2 model using parameter set 1 and 2.
