@@ -1,4 +1,4 @@
-# Get eGylle experiments 
+# Sort out some variables and names
 
 idat$pmid <- as.character(idat$pmid)
 pdat$pmid <- as.character(pdat$pmid)

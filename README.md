@@ -13,7 +13,7 @@ Results are in `ALFAM2-app/output`.
 
 ## ALFAM2-var
 Quantification of residual variation in the broader ALFAM2 database to estimate the "institutional effect".
-ALFAM2 data are in `ALFAM2-var/data-emission`.
+ALFAM2 data (with gap filling!) are in `ALFAM2-var/data-emission`.
 Run `ALFAM2-var/data-emission/scripts/main.R` to download a new version.
 Run `ALFAM2-var/scripts/main.R` to apply the ALFAM2 model to the measurement data and calculate apparent error (residuals).
 Results are summarized in `ALFAM2-var/output`.
