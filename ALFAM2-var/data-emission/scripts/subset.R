@@ -48,6 +48,3 @@ table(pdat$country)
 table(pd2$country)
 table(pd2$country, pd2$app.mthd)
 length(pmid.keep)
-
-# Merge in plot-level data
-id2 <- merge(id2, pd2, by = c('pid', 'pmid'))
