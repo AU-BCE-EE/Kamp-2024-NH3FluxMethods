@@ -1,7 +1,6 @@
 ---
-title: 'Model call record'
+title: 'ALFAM2 model call record'
 output: pdf_document
-classoption: landscape
 author: Sasha D. Hafner
 date: "`r format(Sys.time(), '%d %B, %Y %H:%M')`"
 ---

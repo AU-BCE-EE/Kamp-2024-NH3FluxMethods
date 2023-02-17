@@ -1,0 +1,175 @@
+---
+title: 'Mixed-effects models'
+output: pdf_document
+author: Sasha D. Hafner
+date: "`r format(Sys.time(), '%d %B, %Y %H:%M')`"
+---
+
+# 1. Take a look
+
+```{r}
+ggplot(dfinal, aes(app.mthd, e.rel, colour = institute)) +
+  geom_jitter(height = 0) +
+  theme(legend.position = 'top')
+
+ggplot(dfinal, aes(app.mthd, err2, colour = institute)) +
+  geom_jitter(height = 0) +
+  theme(legend.position = 'top')
+```
+
+Drop values > 100% applied TAN.
+
+```{r}
+dfinal <- dfinal[e.rel < 1.1, ] 
+```
+
+```{r}
+ggplot(dfinal, aes(app.mthd, e.rel, colour = institute)) +
+  geom_jitter(height = 0) +
+  theme(legend.position = 'top')
+
+ggplot(dfinal, aes(app.mthd, err2, colour = institute)) +
+  geom_jitter(height = 0) +
+  theme(legend.position = 'top')
+```
+
+# 2. Data prep
+
+```{r}
+dfinal <- droplevels(dfinal[!is.na(e.rel), ])
+dfinal$inst <- factor(dfinal$inst)
+dfinal$inst.meas.tech <- interaction(dfinal$institute, dfinal$meas.tech)
+dfinal$app.mthd <- factor(dfinal$app.mthd)
+```
+
+Get subset without crazy broadcast
+
+```{r}
+dfinalb <- dfinal[app.mthd != 'bc', ]
+```
+
+# 3. Basic variability and comparison of simplest predictors
+
+```{r}
+m0 <- lmer(e.rel ~ (1|inst.meas.tech), data = dfinal)
+```
+
+```{r}
+m1 <- lmer(e.rel ~ app.mthd + (1|inst.meas.tech), data = dfinal)
+```
+
+```{r}
+m2 <- lm(e.rel ~ app.mthd, data = dfinal)
+```
+
+```{r}
+AIC(m0, m1, m2)
+summary(m0)
+summary(m1)
+summary(m2)
+```
+
+So, institute x measurement technique effect is around 12% of applied TAN (from model `m1`).
+Residuals are large, around 20% of applied TAN.
+Presumably residuals are smaller for injection.
+
+```{r}
+res <- resid(m1)
+plot(dfinal$app.mthd, res)
+```
+
+Perhaps, but could be worse.
+
+Repeat without broadcast
+
+```{r}
+m0b <- lmer(e.rel ~ (1|inst.meas.tech), data = dfinalb)
+```
+
+```{r}
+m1b <- lmer(e.rel ~ app.mthd + (1|inst.meas.tech), data = dfinalb)
+```
+
+```{r}
+m2b <- lm(e.rel ~ app.mthd, data = dfinalb)
+```
+
+```{r}
+AIC(m0b, m1b, m2b)
+summary(m0b)
+summary(m1b)
+summary(m2b)
+```
+
+Less variability without broadcast.
+
+# 4. ALFAM2 model residuals
+
+```{r}
+m3 <- lmer(err2 ~ (1|inst.meas.tech), data = dfinal)
+```
+
+```{r}
+m4 <- lmer(err2 ~ app.mthd + (1|inst.meas.tech), data = dfinal)
+```
+
+```{r}
+summary(m0)
+summary(m1)
+summary(m3)
+summary(m4)
+AIC(m3, m4)
+```
+
+Reassuring that `m3` is actually a better model than `m4`, meaning adding application method on top of ALFAM2 predictions doesn't help.
+
+Again, exclude broadcast.
+
+```{r}
+m3b <- lmer(err2 ~ (1|inst.meas.tech), data = dfinalb)
+```
+
+```{r}
+m4b <- lmer(err2 ~ app.mthd + (1|inst.meas.tech), data = dfinalb)
+```
+
+```{r}
+summary(m0b)
+summary(m1b)
+summary(m3b)
+summary(m4b)
+AIC(m3b, m4b)
+```
+
+Here too, `m3b` is better.
+
+# 5. "Institution effect"
+
+Our best estimate of an "institution effect" is from `m3`, where we have corrected for different application methods, manure DM, pH, and weather using the ALFAM2 model.
+
+```{r}
+VarCorr(m1)
+VarCorr(m1b)
+VarCorr(m3)
+VarCorr(m3b)
+```
+
+```{r}
+summary(m1)
+```
+
+```{r}
+VarCorr(m1b)
+```
+
+```{r}
+summary(m3)
+```
+
+```{r}
+VarCorr(m3b)
+```
+
+```{r}
+summary(m3b)
+```

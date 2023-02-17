@@ -5,29 +5,21 @@ pdat$app.date <- as.character(pdat$app.start, format = '%Y-%m-%d')
 # No acidification 
 # No incorporation
 # Manure pH required
+# Accept any type of manure (including mixes), some missing weather data and manure pH
 pdat$app.mthd <- pdat$app.method
 pd2 <- pdat[!is.na(pdat$e.24) &
           !is.na(pdat$app.mthd) &
           !is.na(pdat$man.dm) &
-          !is.na(pdat$man.source) & 
-          !is.na(pdat$air.temp.24) & 
-          !is.na(pdat$wind.2m.24) & 
-          !is.na(pdat$till) & 
-          !is.na(pdat$incorp) & 
-          !is.na(pdat$crop) & 
-          !is.na(pdat$man.ph) & 
           !pdat$acid &
-          pdat$incorp == 'none' &
           pdat$e.24 > 0 & 
           pdat$e.rel.24 < 1.0 &
-          pdat$man.source %in% c('cat', 'pig') &
           pdat$man.dm <= 15 &
           pdat$app.mthd != 'pi' &
           pdat$app.mthd != 'cs' &
           pdat$app.mthd != 'bss' &
           pdat$meas.tech2 %in% c('micro met', 'wt') &
           !pdat$inst %in% c(102, 107, 108) & # Exclude AUN, old Swiss (IUL/FAT), and JTI
-          pdat$pmid != 1526 & # See rows 1703 and 1728 and others in MU data. Check with Marco
+          pdat$pmid != 1526 & # See rows 1703 and 1728 and others in MU data
           pdat$pmid != 1183 & # Closed slot negative emission
           !grepl('Exclude data from analysis', pdat$notes)
           , ]

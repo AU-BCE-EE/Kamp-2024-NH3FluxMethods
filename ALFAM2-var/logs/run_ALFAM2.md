@@ -1,9 +1,8 @@
 ---
-title: 'Model call record'
+title: 'ALFAM2 model call record'
 output: pdf_document
-classoption: landscape
 author: Sasha D. Hafner
-date: "07 February, 2023 15:43"
+date: "17 February, 2023 05:43"
 ---
 
 Check package version.
@@ -48,23 +47,23 @@ dfsumm(as.data.frame(idat)[, c('pmid', 'tan.app', 'app.mthd', 'app.rate.ni', 'ma
 
 ```
 ## 
-##  13249 rows and 9 columns
-##  13032 unique rows
+##  38640 rows and 9 columns
+##  35702 unique rows
 ##                         pmid tan.app  app.mthd app.rate.ni  man.dm air.temp
 ## Class              character numeric character     numeric numeric  numeric
-## Minimum                    1     8.4        bc           0     0.6    -2.19
-## Maximum                  999     602        ts         138    11.9     37.8
-## Mean                    <NA>    82.3      <NA>        44.3    4.79     14.2
-## Unique (excld. NA)       869     446         4         219     257     2684
+## Minimum                    1     8.4        bc           0     0.6    -4.65
+## Maximum                  999     602        ts         315    13.6     37.8
+## Mean                    <NA>      81      <NA>        40.2    5.09     13.5
+## Unique (excld. NA)      1420     654         4         289     349     4800
 ## Missing values             0       0         0           0       0        0
 ## Sorted                 FALSE   FALSE     FALSE       FALSE   FALSE    FALSE
 ##                                                                            
 ##                    wind.2m  man.ph rain.rate
 ## Class              numeric numeric   numeric
-## Minimum             0.0256    6.54         0
+## Minimum                  0    6.54         0
 ## Maximum               28.4    9.02      71.2
-## Mean                  2.46    7.54    0.0688
-## Unique (excld. NA)    4033     111       589
+## Mean                  2.52     7.5    0.0463
+## Unique (excld. NA)    7144     133       638
 ## Missing values           0       0         0
 ## Sorted               FALSE   FALSE     FALSE
 ## 
@@ -76,48 +75,88 @@ table(idat$file)
 
 ```
 ## 
-##  ../../data-submitted/03/AU/ALFAM2_template_5_2_211012_JP_18ABC.xlsx 
-##                                                                 1788 
-##      ../../data-submitted/03/AU/ALFAM2_template_6_1_eGylle_JK_3.xlsx 
-##                                                                  336 
-##           ../../data-submitted/03/UNINA/ALFAM2_UNINA_5_6_1_ver6.xlsx 
-##                                                                  115 
-## ../../data-submitted/03/UNINI/ALFAM2_template_6.1_ARMOSA2013_V1.xlsx 
-##                                                                  284 
-##                             1 ALFAM2_96TVNH3_DERVAL(44)_2011 v4.xlsx 
-##                                                                  336 
-##                             2 ALFAM2_96TVNH3_LACHAP(44)_2011 v4.xlsx 
-##                                                                  336 
-##                                         6 ALFAM2_FR-GRI-2012 v4.xlsx 
-##                                                                  317 
-##                                            8 ALFAM_LI94_SURF v5.xlsx 
-##                                                                  768 
-##                                                          ALFAM1.xlsx 
-##                                                                 2368 
-##                                           ALFAM2 CAU-LU FTIR v2.xlsx 
-##                                                                  566 
-##                                             ALFAM2_ADAS_RRes_v2.xlsx 
-##                                                                  733 
-##                                                       ALFAM2_AT.xlsx 
-##                                                                  102 
-##                                                    ALFAM2_AU_v5.xlsx 
-##                                                                  285 
-##                                           ALFAM2_Chantigny_2000.xlsx 
-##                                                                  132 
-##                                      ALFAM2_Chantigny_2004_2005.xlsx 
-##                                                                 2091 
-##                                     ALFAM2_data_NL-grass9703_v2.xlsx 
-##                                                                  654 
-##                                               ALFAM2_NMI-WUR_v3.xlsx 
-##                                                                   30 
-##                                        ALFAM2_PoValley-Italy_v7.xlsx 
-##                                                                  336 
-##                                           ALFAM2_Switzerland_v2.xlsx 
-##                                                                  821 
-##                                               ALFAM2_Teagasc_v5.xlsx 
-##                                                                  314 
-##                                               Bittman ALFAM2 v5.xlsx 
-##                                                                  537
+##                  ../../data-submitted/03/AU/ALFAM2_JNK_2019_Aug_5_5_b.xlsx 
+##                                                                       1284 
+##                  ../../data-submitted/03/AU/ALFAM2_JNK_2019_May_5_6_a.xlsx 
+##                                                                        828 
+## ../../data-submitted/03/AU/ALFAM2_template_5_2_210929_JP_CanadianData.xlsx 
+##                                                                        540 
+##        ../../data-submitted/03/AU/ALFAM2_template_5_2_211012_JP_18ABC.xlsx 
+##                                                                       1788 
+##        ../../data-submitted/03/AU/ALFAM2_template_5_2_211012_JP_18GHI.xlsx 
+##                                                                       1733 
+##       ../../data-submitted/03/AU/ALFAM2_template_5_2_211012_JP_18KLRS.xlsx 
+##                                                                       2845 
+##        ../../data-submitted/03/AU/ALFAM2_template_5_2_211012_JP_18NOP.xlsx 
+##                                                                       2556 
+##       ../../data-submitted/03/AU/ALFAM2_template_5_2_211012_JP_19BCHI.xlsx 
+##                                                                       1622 
+##   ../../data-submitted/03/AU/ALFAM2_template_6_0_220126_JP_20CD21A_JP.xlsx 
+##                                                                       1303 
+##    ../../data-submitted/03/AU/ALFAM2_template_6_0_220310_JP_20EFGH_v2.xlsx 
+##                                                                       1134 
+##      ../../data-submitted/03/AU/ALFAM2_template_6_1_220317_JP_21CD22A.xlsx 
+##                                                                       2540 
+##   ../../data-submitted/03/AU/ALFAM2_template_6_1_220524_JP_21E_220610.xlsx 
+##                                                                        829 
+##            ../../data-submitted/03/AU/ALFAM2_template_6_1_eGylle_JK_3.xlsx 
+##                                                                       1345 
+##        ../../data-submitted/03/AU/ALFAM2_template_7_0_eGylle_NL_DE_JK.xlsx 
+##                                                                         52 
+##       ../../data-submitted/03/DiSSA-IT/ALFAM2_data from Adani-Zilio_2.xlsx 
+##                                                                         27 
+##                 ../../data-submitted/03/UNINA/ALFAM2_UNINA_5_6_1_ver6.xlsx 
+##                                                                        115 
+##       ../../data-submitted/03/UNINI/ALFAM2_template_6.1_ARMOSA2013_V1.xlsx 
+##                                                                       1136 
+##                                   1 ALFAM2_96TVNH3_DERVAL(44)_2011 v4.xlsx 
+##                                                                        672 
+##                                   2 ALFAM2_96TVNH3_LACHAP(44)_2011 v4.xlsx 
+##                                                                        504 
+##                                     3 ALFAM2_96TVNH3_TREV(29)_2011 v4.xlsx 
+##                                                                        672 
+##                                               4 ALFAM2_FR-GRI-2008 v4.xlsx 
+##                                                                        105 
+##                                               5 ALFAM2_FR-GRI-2009 v5.xlsx 
+##                                                                        296 
+##                                               6 ALFAM2_FR-GRI-2012 v4.xlsx 
+##                                                                        317 
+##                                               7 ALFAM2_LI94_INCORP v5.xlsx 
+##                                                                       1058 
+##                                                  8 ALFAM_LI94_SURF v5.xlsx 
+##                                                                        768 
+##                                                                ALFAM1.xlsx 
+##                                                                       4072 
+##                                     ALFAM2 CAU-LU cps and micromet v5.xlsx 
+##                                                                         67 
+##                                                 ALFAM2 CAU-LU FTIR v2.xlsx 
+##                                                                        566 
+##                                                   ALFAM2_ADAS_RRes_v2.xlsx 
+##                                                                        733 
+##                                                             ALFAM2_AT.xlsx 
+##                                                                        102 
+##                                                          ALFAM2_AU_v5.xlsx 
+##                                                                        285 
+##                                                 ALFAM2_Chantigny_2000.xlsx 
+##                                                                        132 
+##                                            ALFAM2_Chantigny_2004_2005.xlsx 
+##                                                                       2091 
+##                                            ALFAM2_data_NL_arable01_v3.xlsx 
+##                                                                        458 
+##                                           ALFAM2_data_NL-grass9703_v2.xlsx 
+##                                                                        670 
+##                                                     ALFAM2_NMI-WUR_v3.xlsx 
+##                                                                         58 
+##                                              ALFAM2_PoValley-Italy_v7.xlsx 
+##                                                                       1599 
+##                                                 ALFAM2_Switzerland_v2.xlsx 
+##                                                                        851 
+##                                                     ALFAM2_Teagasc_v5.xlsx 
+##                                                                        314 
+##                                                           ALFAM2_USDA.xlsx 
+##                                                                         36 
+##                                                     Bittman ALFAM2 v5.xlsx 
+##                                                                        537
 ```
 
 Run model with set 2 parameters
@@ -132,33 +171,6 @@ dpred1 <- alfam2(as.data.frame(idat), pars = ALFAM2pars01, app.name = 'tan.app',
 ## User-supplied parameters are being used.
 ```
 
-```
-## Warning in alfam2(as.data.frame(idat), pars = ALFAM2pars01, app.name = "tan.app", : Running with 17 parameters. Dropped 3 with no match.
-## These secondary parameters have been dropped:
-##   incorp.deep.f4
-##   incorp.shallow.f4
-##   incorp.deep.r3
-## 
-## These secondary parameters are being used:
-##   int.f0
-##   int.r1
-##   int.r2
-##   int.r3
-##   app.mthd.os.f0
-##   app.rate.f0
-##   man.dm.f0
-##   app.mthd.bc.r1
-##   man.dm.r1
-##   air.temp.r1
-##   wind.2m.r1
-##   man.ph.r1
-##   air.temp.r3
-##   app.mthd.os.r3
-##   man.ph.r3
-##   rain.rate.r2
-##   rain.cum.r3
-```
-
 ```r
 dpred2 <- alfam2(as.data.frame(idat), pars = ALFAM2pars02, app.name = 'tan.app', time.name = 'ct', group = 'pmid', prep = TRUE)
 ```
@@ -168,15 +180,11 @@ dpred2 <- alfam2(as.data.frame(idat), pars = ALFAM2pars02, app.name = 'tan.app',
 ```
 
 ```
-## Warning in alfam2(as.data.frame(idat), pars = ALFAM2pars02, app.name = "tan.app", : Running with 17 parameters. Dropped 7 with no match.
+## Warning in alfam2(as.data.frame(idat), pars = ALFAM2pars02, app.name = "tan.app", : Running with 21 parameters. Dropped 3 with no match.
 ## These secondary parameters have been dropped:
 ##   app.mthd.cs.f0
 ##   ts.cereal.hght.r1
 ##   app.mthd.cs.r3
-##   incorp.shallow.f4
-##   incorp.shallow.r3
-##   incorp.deep.f4
-##   incorp.deep.r3
 ## 
 ## These secondary parameters are being used:
 ##   int.f0
@@ -196,5 +204,9 @@ dpred2 <- alfam2(as.data.frame(idat), pars = ALFAM2pars02, app.name = 'tan.app',
 ##   int.r3
 ##   app.mthd.bc.r3
 ##   man.ph.r3
+##   incorp.shallow.f4
+##   incorp.shallow.r3
+##   incorp.deep.f4
+##   incorp.deep.r3
 ```
 
