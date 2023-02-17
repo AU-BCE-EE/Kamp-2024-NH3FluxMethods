@@ -33,6 +33,19 @@ ggplot(dfinal, aes(app.mthd, err2, colour = institute)) +
   theme(legend.position = 'top')
 ```
 
+Total counts.
+
+```{r}
+length(unique(dfinal$country))
+length(unique(dfinal$inst))
+```
+
+```{r}
+unique(dfinal$country)
+unique(dfinal$institute)
+unique(dfinal$inst)
+```
+
 # 2. Data prep
 
 ```{r}
