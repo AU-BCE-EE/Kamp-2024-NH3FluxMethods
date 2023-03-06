@@ -20,6 +20,11 @@ ggplot(dfinal, aes(app.mthd, err2, colour = institute)) +
 Drop values > 100% applied TAN.
 
 ```{r}
+dim(dfinal)
+length(unique(dfinal$pmid))
+```
+
+```{r}
 dfinal <- dfinal[e.rel < 1.1, ] 
 ```
 
@@ -34,6 +39,11 @@ ggplot(dfinal, aes(app.mthd, err2, colour = institute)) +
 ```
 
 Total counts.
+
+```{r}
+dim(dfinal)
+length(unique(dfinal$pmid))
+```
 
 ```{r}
 length(unique(dfinal$country))
