@@ -7,21 +7,20 @@ pdat$app.date <- as.character(pdat$app.start, format = '%Y-%m-%d')
 # Manure pH required
 # Accept any type of manure (including mixes), some missing weather data and manure pH
 pdat$app.mthd <- pdat$app.method
-pd2 <- pdat[!is.na(pdat$e.24) &
-          !is.na(pdat$app.mthd) &
-          !is.na(pdat$man.dm) &
-          !pdat$acid &
-          pdat$e.24 > 0 & 
-          pdat$e.rel.24 < 1.0 &
-          pdat$man.dm <= 15 &
-          pdat$app.mthd != 'pi' &
-          pdat$app.mthd != 'cs' &
-          pdat$app.mthd != 'bss' &
-          pdat$meas.tech2 %in% c('micro met', 'wt') &
-          !pdat$inst %in% c(102, 107, 108) & # Exclude AUN, old Swiss (IUL/FAT), and JTI
-          pdat$pmid != 1526 & # See rows 1703 and 1728 and others in MU data
-          pdat$pmid != 1183 & # Closed slot negative emission
-          !grepl('Exclude data from analysis', pdat$notes)
+pd2 <- pdat[!is.na(e.24) &
+          !is.na(app.mthd) &
+          !is.na(man.dm) &
+          !acid &
+          e.24 > 0 & 
+          e.rel.24 < 1.0 &
+          man.dm <= 15 &
+          app.mthd != 'pi' &
+          app.mthd != 'cs' &
+          app.mthd != 'bss' &
+          meas.tech2 %in% c('micro met', 'wt') &
+          !inst == 102 & # Exclude AUN
+          (!inst == 107 | meas.tech2 == 'wt') & # Exclude old Swiss (IUL/FAT) micro met
+          !grepl('Exclude data from analysis', notes.plot) # This removes pmid 1488 bc of improper injection operation
           , ]
 
 # These pmid will be retained (more trimming below)
