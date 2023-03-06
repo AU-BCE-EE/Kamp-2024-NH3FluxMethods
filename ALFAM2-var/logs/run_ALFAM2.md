@@ -2,7 +2,7 @@
 title: 'ALFAM2 model call record'
 output: pdf_document
 author: Sasha D. Hafner
-date: "17 February, 2023 06:57"
+date: "06 March, 2023 14:59"
 ---
 
 Check package version.
@@ -13,7 +13,7 @@ packageVersion('ALFAM2')
 ```
 
 ```
-## [1] '2.17'
+## [1] '2.19'
 ```
 
 Parameter values.
@@ -47,14 +47,14 @@ dfsumm(as.data.frame(idat)[, c('pmid', 'tan.app', 'app.mthd', 'app.rate.ni', 'ma
 
 ```
 ## 
-##  38640 rows and 9 columns
-##  35702 unique rows
+##  39442 rows and 9 columns
+##  36501 unique rows
 ##                         pmid tan.app  app.mthd app.rate.ni  man.dm air.temp
 ## Class              character numeric character     numeric numeric  numeric
-## Minimum                    1     8.4        bc           0     0.6    -4.65
+## Minimum                    1    6.65        bc           0    0.55    -4.65
 ## Maximum                  999     602        ts         315    13.6     37.8
-## Mean                    <NA>      81      <NA>        40.2    5.09     13.5
-## Unique (excld. NA)      1420     654         4         289     349     4800
+## Mean                    <NA>    80.6      <NA>        40.5    5.08     13.6
+## Unique (excld. NA)      1487     690         4         307     364     4831
 ## Missing values             0       0         0           0       0        0
 ## Sorted                 FALSE   FALSE     FALSE       FALSE   FALSE    FALSE
 ##                                                                            
@@ -62,8 +62,8 @@ dfsumm(as.data.frame(idat)[, c('pmid', 'tan.app', 'app.mthd', 'app.rate.ni', 'ma
 ## Class              numeric numeric   numeric
 ## Minimum                  0    6.54         0
 ## Maximum               28.4    9.02      71.2
-## Mean                  2.52     7.5    0.0463
-## Unique (excld. NA)    7144     133       638
+## Mean                  2.57     7.5    0.0459
+## Unique (excld. NA)    7193     133       644
 ## Missing values           0       0         0
 ## Sorted               FALSE   FALSE     FALSE
 ## 
@@ -126,7 +126,7 @@ table(idat$file)
 ##                                                  8 ALFAM_LI94_SURF v5.xlsx 
 ##                                                                        768 
 ##                                                                ALFAM1.xlsx 
-##                                                                       4072 
+##                                                                       4591 
 ##                                     ALFAM2 CAU-LU cps and micromet v5.xlsx 
 ##                                                                         67 
 ##                                                 ALFAM2 CAU-LU FTIR v2.xlsx 
@@ -148,7 +148,7 @@ table(idat$file)
 ##                                                     ALFAM2_NMI-WUR_v3.xlsx 
 ##                                                                         58 
 ##                                              ALFAM2_PoValley-Italy_v7.xlsx 
-##                                                                       1599 
+##                                                                       1882 
 ##                                                 ALFAM2_Switzerland_v2.xlsx 
 ##                                                                        851 
 ##                                                     ALFAM2_Teagasc_v5.xlsx 

@@ -1,6 +1,6 @@
 R version 4.2.1 (2022-06-23)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 22.04.1 LTS
+Running under: Ubuntu 22.04.2 LTS
 
 Matrix products: default
 BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.0
@@ -18,11 +18,11 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] rmarkdown_2.14    knitr_1.39        ggplot2_3.4.0     ALFAM2_2.17      
+[1] rmarkdown_2.14    knitr_1.39        ggplot2_3.4.0     ALFAM2_2.19      
 [5] data.table_1.14.2 lme4_1.1-29       Matrix_1.5-1      nvimcom_0.9-82   
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.9       compiler_4.2.1   pillar_1.7.0     nloptr_2.0.1    
+ [1] Rcpp_1.0.10      compiler_4.2.1   pillar_1.7.0     nloptr_2.0.1    
  [5] tools_4.2.1      digest_0.6.29    boot_1.3-28      evaluate_0.15   
  [9] lifecycle_1.0.3  tibble_3.1.7     gtable_0.3.0     nlme_3.1-157    
 [13] lattice_0.20-45  pkgconfig_2.0.3  rlang_1.0.6      DBI_1.1.3       
