@@ -2,7 +2,7 @@
 title: 'ALFAM2 model call record'
 output: pdf_document
 author: Sasha D. Hafner
-date: "06 March, 2023 14:59"
+date: "06 March, 2023 15:09"
 ---
 
 Check package version.
