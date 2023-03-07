@@ -12,6 +12,7 @@ rtag <- 'v2.17'
 ##rtag <- ''
 
 source('packages.R')
+source('functions.R')
 source('load.R')
 source('subset.R')
 source('export.R')

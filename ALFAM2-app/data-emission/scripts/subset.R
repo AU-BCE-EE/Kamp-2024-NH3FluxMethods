@@ -1,8 +1,8 @@
 
 pdat$app.date <- as.character(pdat$app.start, format = '%Y-%m-%d')
 
-#pdat <- subset(pdat, proj == 'eGylle' & app.date %in% c('2021-08-11', '2021-08-20', '2022-01-05') & meas.tech != 'DTM' & is.na(meas.tech.det))
-pdat <- subset(pdat, proj == 'eGylle')
+pdat <- subset(pdat, proj == 'eGylle' & app.date %in% c('2021-08-20', '2021-11-09'))
+table(pdat$meas.tech, pdat$app.date)
 
 # Drop non-eGylle obs from emis interval data
 idat <- subset(idat, pmid %in% unique(pdat$pmid))
@@ -10,4 +10,5 @@ idat <- subset(idat, pmid %in% unique(pdat$pmid))
 # Get pmid for including in paper
 
 pdat$meas.tech3 <- paste(pdat$meas.tech, pdat$meas.tech.det)
-pmids <- aggregate(pdat$pmid, list(pdat$institute, pdat$meas.tech3), FUN = function(x) paste(x, collapse = ', '))
+pmids <- aggregate2(pdat, c('pmid', 'file', 'row.in.file.plot', 'first.row.in.file.int', 'app.date'), 
+                    c('institute', 'meas.tech3', 'field'), FUN = list(function(x) paste(unique(x), collapse = ', ')))
