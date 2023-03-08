@@ -12,7 +12,7 @@ pdat <- subset(pdat, proj == 'eGylle' & app.date %in% c('2021-08-20', '2021-11-0
 idat <- merge(pdat, idat, by = c('pid', 'pmid'))
 
 # Remove pre-application measurements
-idat <- subset(idat, cta > 0.75 * dt)
+idat <- subset(idat, cta > 0.25 * dt)
 
 # Add application method and rate
 idat$app.mthd <- idat$app.method

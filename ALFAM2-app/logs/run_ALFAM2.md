@@ -3,7 +3,7 @@ title: 'Model call record'
 output: pdf_document
 classoption: landscape
 author: Sasha D. Hafner
-date: "19 January, 2023 10:19"
+date: "08 March, 2023 11:10"
 ---
 
 Check package version.
@@ -14,7 +14,7 @@ packageVersion('ALFAM2')
 ```
 
 ```
-## [1] '2.17'
+## [1] '2.19'
 ```
 
 Parameter values.
@@ -48,23 +48,23 @@ dfsumm(as.data.frame(bdat)[, c('pmid', 'tan.app', 'app.mthd', 'app.rate.ni', 'ma
 
 ```
 ## 
-##  820 rows and 9 columns
-##  817 unique rows
+##  821 rows and 9 columns
+##  818 unique rows
 ##                         pmid tan.app  app.mthd app.rate.ni  man.dm air.temp
 ## Class              character numeric character     numeric numeric  numeric
 ## Minimum                 1936    30.2      bsth           0    4.95     2.33
 ## Maximum                 1937      70        os        35.9    6.78     21.6
 ## Mean                    <NA>    53.4      <NA>        20.9    5.71     11.7
-## Unique (excld. NA)         2       2         2           2       2      519
+## Unique (excld. NA)         2       2         2           2       2      520
 ## Missing values             0       0         0           0       0        0
 ## Sorted                  TRUE   FALSE      TRUE       FALSE    TRUE    FALSE
 ##                                                                            
 ##                    wind.2m  man.ph rain.rate
 ## Class              numeric numeric   numeric
 ## Minimum             0.0765     7.7         0
-## Maximum               5.74     7.9       0.4
-## Mean                  2.03    7.82   0.00146
-## Unique (excld. NA)     811       2         3
+## Maximum               5.74     7.9         3
+## Mean                  2.03    7.82    0.0136
+## Unique (excld. NA)     812       2         5
 ## Missing values           0       0         0
 ## Sorted               FALSE   FALSE     FALSE
 ## 
@@ -78,7 +78,7 @@ table(bdat$app.start, bdat$man.ph, exclude = NULL)
 ##                      
 ##                       7.7 7.9
 ##   2021-08-20 10:58:00   0 478
-##   2021-11-09 10:15:00 342   0
+##   2021-11-09 10:15:00 343   0
 ```
 
 ```r
@@ -88,7 +88,7 @@ table(bdat$file)
 ```
 ## 
 ## ../../data-submitted/03/AU/ALFAM2_template_6_1_eGylle_JK_3.xlsx 
-##                                                             820
+##                                                             821
 ```
 
 Run model with set 2 parameters
