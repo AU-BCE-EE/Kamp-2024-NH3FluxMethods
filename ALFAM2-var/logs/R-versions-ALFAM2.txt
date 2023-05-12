@@ -18,7 +18,7 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] rmarkdown_2.14    knitr_1.39        ggplot2_3.4.0     ALFAM2_2.19      
+[1] rmarkdown_2.14    knitr_1.39        ggplot2_3.4.0     ALFAM2_2.22      
 [5] data.table_1.14.2 lme4_1.1-29       Matrix_1.5-1      nvimcom_0.9-82   
 
 loaded via a namespace (and not attached):
