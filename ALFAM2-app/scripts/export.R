@@ -12,3 +12,7 @@ exdat <- bpred[, c('pmid', 'file', 'row.in.file.plot', 'row.in.file.int', 'field
                   'e.rel.pred2', 'e.cum.pred2', 'j.NH3.pred2')]
 
 write.csv(exdat, '../output/ALFAM2_emis.csv', row.names = FALSE)
+
+write.csv(cemis, '../output/ALFAM2_final_emis.csv', row.names = FALSE)
+write.csv(cemisb, '../output/ALFAM2_final_emis_bin.csv', row.names = FALSE)
+write.csv(cemisdiff, '../output/ALFAM2_final_emis_diff.csv', row.names = FALSE)

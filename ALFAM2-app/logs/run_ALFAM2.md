@@ -3,9 +3,10 @@ title: 'Model call record'
 output: pdf_document
 classoption: landscape
 author: Sasha D. Hafner
-date: "08 March, 2023 11:25"
+date: "12 May, 2023 16:03"
 ---
 
+# Initial stuff
 Check package version.
 
 
@@ -14,7 +15,7 @@ packageVersion('ALFAM2')
 ```
 
 ```
-## [1] '2.19'
+## [1] '2.22'
 ```
 
 Parameter values.
@@ -39,6 +40,7 @@ ALFAM2pars02
 ##       -0.96496655       -0.58052689       -3.69494954       -1.26569562
 ```
 
+# bLS 30 minute data
 Check input data.
 
 
@@ -168,7 +170,7 @@ dpred2 <- alfam2(as.data.frame(bdat), pars = ALFAM2pars02, app.name = 'tan.app',
 ##   man.ph.r3
 ```
 
-Add to bLS data frame for now
+Add to bLS data frame
 
 
 ```r
@@ -177,6 +179,127 @@ bpred <- cbind(bdat, dpred1[, c('j.pred1', 'e.pred1', 'er.pred1')])
 names(dpred2) <- paste0(names(dpred2), '.pred2')
 bpred <- cbind(bpred, dpred2[, c('j.pred2', 'e.pred2', 'er.pred2')])
 ```
+
+# bLS binned (average weather) data
+Check input data.
+
+
+```r
+dfsumm(as.data.frame(bindat)[, c('pmid', 'tan.app', 'app.mthd', 'app.rate.ni', 'man.dm', 'air.temp', 'wind.2m', 'man.ph', 'rain.rate')])
+```
+
+```
+## 
+##  69 rows and 9 columns
+##  69 unique rows
+##                         pmid tan.app  app.mthd app.rate.ni  man.dm air.temp
+## Class              character numeric character     numeric numeric  numeric
+## Minimum                 1936    30.2      bsth           0    4.95     3.13
+## Maximum                 1937      70        os        35.9    6.78     20.2
+## Mean                    <NA>    53.3      <NA>        20.8    5.72     11.7
+## Unique (excld. NA)         2       2         2           2       2       68
+## Missing values             0       0         0           0       0        0
+## Sorted                  TRUE   FALSE      TRUE       FALSE    TRUE    FALSE
+##                                                                            
+##                    wind.2m  man.ph rain.rate
+## Class              numeric numeric   numeric
+## Minimum              0.213     7.7         0
+## Maximum               4.87     7.9      0.75
+## Mean                  2.02    7.82    0.0135
+## Unique (excld. NA)      69       2         5
+## Missing values           0       0         0
+## Sorted               FALSE   FALSE     FALSE
+## 
+```
+
+Run model with set 2 parameters
+
+
+```r
+dpred1b <- alfam2(as.data.frame(bindat), pars = ALFAM2pars01, app.name = 'tan.app', time.name = 'cta', group = 'pmid', prep = TRUE)
+```
+
+```
+## User-supplied parameters are being used.
+```
+
+```
+## Warning in alfam2(as.data.frame(bindat), pars = ALFAM2pars01, app.name = "tan.app", : Running with 14 parameters. Dropped 6 with no match.
+## These secondary parameters have been dropped:
+##   app.rate.f0
+##   incorp.deep.f4
+##   incorp.shallow.f4
+##   app.mthd.bc.r1
+##   incorp.deep.r3
+##   rain.cum.r3
+## 
+## These secondary parameters are being used:
+##   int.f0
+##   int.r1
+##   int.r2
+##   int.r3
+##   app.mthd.os.f0
+##   man.dm.f0
+##   man.dm.r1
+##   air.temp.r1
+##   wind.2m.r1
+##   man.ph.r1
+##   air.temp.r3
+##   app.mthd.os.r3
+##   man.ph.r3
+##   rain.rate.r2
+```
+
+```r
+dpred2b <- alfam2(as.data.frame(bindat), pars = ALFAM2pars02, app.name = 'tan.app', time.name = 'cta', group = 'pmid', prep = TRUE)
+```
+
+```
+## User-supplied parameters are being used.
+```
+
+```
+## Warning in alfam2(as.data.frame(bindat), pars = ALFAM2pars02, app.name = "tan.app", : Running with 13 parameters. Dropped 11 with no match.
+## These secondary parameters have been dropped:
+##   man.source.pig.f0
+##   app.mthd.cs.f0
+##   app.mthd.bc.r1
+##   app.mthd.ts.r1
+##   ts.cereal.hght.r1
+##   app.mthd.bc.r3
+##   app.mthd.cs.r3
+##   incorp.shallow.f4
+##   incorp.shallow.r3
+##   incorp.deep.f4
+##   incorp.deep.r3
+## 
+## These secondary parameters are being used:
+##   int.f0
+##   app.mthd.os.f0
+##   app.rate.ni.f0
+##   man.dm.f0
+##   int.r1
+##   man.dm.r1
+##   air.temp.r1
+##   wind.2m.r1
+##   man.ph.r1
+##   int.r2
+##   rain.rate.r2
+##   int.r3
+##   man.ph.r3
+```
+
+Add to bLS data frame
+
+
+```r
+names(dpred1b) <- paste0(names(dpred1b), '.pred1')
+bpredb <- cbind(bindat, dpred1b[, c('j.pred1', 'e.pred1', 'er.pred1')])
+names(dpred2b) <- paste0(names(dpred2b), '.pred2')
+bpredb <- cbind(bpredb, dpred2b[, c('j.pred2', 'e.pred2', 'er.pred2')])
+```
+
+
 
 
 

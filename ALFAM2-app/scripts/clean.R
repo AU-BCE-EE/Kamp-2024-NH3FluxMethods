@@ -24,3 +24,12 @@ idat$meas.tech.u <- paste(idat$meas.tech, idat$meas.tech.det)
 # Get main (high-res, CRDS) bLS results to use weather intervals
 # b for bLS
 bdat <- subset(idat, meas.tech.u == 'bLS NA')
+
+# Bin bLS data to check for weather resolution effect
+dd <- bdat[, .(pmid, cta, air.temp, wind.2m, rain.rate)]
+dd[, ctbin := cut(cta, 0:50 * 6)]
+
+bindat <- dd[, .(cta = max(cta), air.temp = mean(air.temp), wind.2m = mean(wind.2m), rain.rate = mean(rain.rate)), by = .(pmid, ctbin)]
+
+# Add plot-level predictors to binned data
+bindat <- merge(bindat, bdat[, c('pmid', 'cta', 'tan.app', 'app.mthd', 'app.rate.ni', 'man.dm', 'man.ph')], by = c('pmid', 'cta'))

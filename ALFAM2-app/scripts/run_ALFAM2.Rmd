@@ -6,6 +6,7 @@ author: Sasha D. Hafner
 date: "`r format(Sys.time(), '%d %B, %Y %H:%M')`"
 ---
 
+# Initial stuff
 Check package version.
 
 ```{r}
@@ -18,6 +19,7 @@ Parameter values.
 ALFAM2pars02
 ```
 
+# bLS 30 minute data
 Check input data.
 
 ```{r}
@@ -33,7 +35,7 @@ dpred1 <- alfam2(as.data.frame(bdat), pars = ALFAM2pars01, app.name = 'tan.app',
 dpred2 <- alfam2(as.data.frame(bdat), pars = ALFAM2pars02, app.name = 'tan.app', time.name = 'cta', group = 'pmid', prep = TRUE)
 ```
 
-Add to bLS data frame for now
+Add to bLS data frame
 
 ```{r}
 names(dpred1) <- paste0(names(dpred1), '.pred1')
@@ -41,6 +43,31 @@ bpred <- cbind(bdat, dpred1[, c('j.pred1', 'e.pred1', 'er.pred1')])
 names(dpred2) <- paste0(names(dpred2), '.pred2')
 bpred <- cbind(bpred, dpred2[, c('j.pred2', 'e.pred2', 'er.pred2')])
 ```
+
+# bLS binned (average weather) data
+Check input data.
+
+```{r}
+dfsumm(as.data.frame(bindat)[, c('pmid', 'tan.app', 'app.mthd', 'app.rate.ni', 'man.dm', 'air.temp', 'wind.2m', 'man.ph', 'rain.rate')])
+```
+
+Run model with set 2 parameters
+
+```{r}
+dpred1b <- alfam2(as.data.frame(bindat), pars = ALFAM2pars01, app.name = 'tan.app', time.name = 'cta', group = 'pmid', prep = TRUE)
+dpred2b <- alfam2(as.data.frame(bindat), pars = ALFAM2pars02, app.name = 'tan.app', time.name = 'cta', group = 'pmid', prep = TRUE)
+```
+
+Add to bLS data frame
+
+```{r}
+names(dpred1b) <- paste0(names(dpred1b), '.pred1')
+bpredb <- cbind(bindat, dpred1b[, c('j.pred1', 'e.pred1', 'er.pred1')])
+names(dpred2b) <- paste0(names(dpred2b), '.pred2')
+bpredb <- cbind(bpredb, dpred2b[, c('j.pred2', 'e.pred2', 'er.pred2')])
+```
+
+
 
 
 
