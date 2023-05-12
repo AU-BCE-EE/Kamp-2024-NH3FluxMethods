@@ -71,6 +71,15 @@ Get subset without crazy broadcast
 dfinalb <- dfinal[app.mthd != 'bc', ]
 ```
 
+Subset without outliers.
+
+```{r}
+dfinal[, z := abs(scale(e.rel)), by = c('inst', 'app.mthd')]
+dfinalo <- dfinal[z < 2, ]
+dfinalbo <- dfinal[app.mthd != 'bc' & z < 2, ]
+```
+
+
 # 3. Basic variability and comparison of simplest predictors
 
 ```{r}
@@ -92,8 +101,8 @@ summary(m1)
 summary(m2)
 ```
 
-So, institute x measurement technique effect is around 12% of applied TAN (from model `m1`).
-Residuals are large, around 20% of applied TAN.
+So, institute x measurement technique effect is around 11% of applied TAN (from model `m1`).
+Residuals are large, around 18% of applied TAN.
 Presumably residuals are smaller for injection.
 
 ```{r}
@@ -101,7 +110,28 @@ res <- resid(m1)
 plot(dfinal$app.mthd, res)
 ```
 
-Perhaps, but could be worse.
+Perhaps, but could be worse (even more different).
+
+Repeat without outliers.
+
+```{r}
+m0o <- lmer(e.rel ~ (1|inst.meas.tech), data = dfinalo)
+```
+
+```{r}
+m1o <- lmer(e.rel ~ app.mthd + (1|inst.meas.tech), data = dfinalo)
+```
+
+```{r}
+m2o <- lm(e.rel ~ app.mthd, data = dfinalo)
+```
+
+```{r}
+AIC(m0o, m1o, m2o)
+summary(m0o)
+summary(m1o)
+summary(m2o)
+```
 
 Repeat without broadcast
 
@@ -125,6 +155,28 @@ summary(m2b)
 ```
 
 Less variability without broadcast.
+
+Repeat without broadcast and without outliers.
+
+```{r}
+m0bo <- lmer(e.rel ~ (1|inst.meas.tech), data = dfinalbo)
+```
+
+```{r}
+m1bo <- lmer(e.rel ~ app.mthd + (1|inst.meas.tech), data = dfinalbo)
+```
+
+```{r}
+m2bo <- lm(e.rel ~ app.mthd, data = dfinalbo)
+```
+
+```{r}
+AIC(m0bo, m1bo, m2bo)
+summary(m0bo)
+summary(m1bo)
+summary(m2bo)
+```
+
 
 # 4. ALFAM2 model residuals
 
@@ -166,9 +218,51 @@ AIC(m3b, m4b)
 
 Here too, `m3b` is better.
 
+Exlude outliers
+
+```{r}
+m3o <- lmer(err2 ~ (1|inst.meas.tech), data = dfinalo)
+```
+
+```{r}
+m4o <- lmer(err2 ~ app.mthd + (1|inst.meas.tech), data = dfinalo)
+```
+
+```{r}
+summary(m0o)
+summary(m1o)
+summary(m3o)
+summary(m4o)
+AIC(m3o, m4o)
+```
+
+Here too, `m3o` is better.
+
+Exclude broadcast and outliers.
+
+```{r}
+m3bo <- lmer(err2 ~ (1|inst.meas.tech), data = dfinalbo)
+```
+
+```{r}
+m4bo <- lmer(err2 ~ app.mthd + (1|inst.meas.tech), data = dfinalbo)
+```
+
+```{r}
+summary(m0bo)
+summary(m1bo)
+summary(m3bo)
+summary(m4bo)
+AIC(m3bo, m4bo)
+```
+
+Here too, `m3bo` is boetter.
+
 # 5. "Institution effect"
 
 Our best estimate of an "institution effect" is from `m3`, where we have corrected for different application methods, manure DM, pH, and weather using the ALFAM2 model.
+
+With no outlier removal:
 
 ```{r}
 VarCorr(m1)
@@ -177,22 +271,14 @@ VarCorr(m3)
 VarCorr(m3b)
 ```
 
-```{r}
-summary(m1)
-```
+Excluding outliers:
+
 
 ```{r}
-VarCorr(m1b)
+VarCorr(m1o)
+VarCorr(m1bo)
+VarCorr(m3o)
+VarCorr(m3bo)
 ```
 
-```{r}
-summary(m3)
-```
 
-```{r}
-VarCorr(m3b)
-```
-
-```{r}
-summary(m3b)
-```
