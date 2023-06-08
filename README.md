@@ -18,3 +18,7 @@ Run `ALFAM2-var/data-emission/scripts/main.R` to download a new version.
 Run `ALFAM2-var/scripts/main.R` to apply the ALFAM2 model to the measurement data and calculate apparent error (residuals).
 Results are summarized in `ALFAM2-var/output`.
 
+## scripts-WT
+R scripts for processing WT data to calculate measured ammonia emission. 
+Data files are too large to include but scripts are still included here for partial reproducibility. 
+The script 'main.R' calls all others.
