@@ -1,0 +1,27 @@
+---
+title: "Wind tunnel AER stats for 1-AU"
+author: "Sasha D. Hafner"
+output: pdf_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+Take a look.
+
+```{r}
+ggplot(pdat, aes(aer, e.rel.168)) +
+  geom_point() + geom_smooth(method = lm)
+```
+
+There is a clear response of emission to AER.
+
+Apply linear model.
+
+```{r}
+m1 <- lm(e.rel.168 ~ aer, data = pdat)
+summary(m1)
+anova(m1)
+confint(m1)
+drop1(m1, test = 'F')
+```
+
+P = 0.0025 for AER effect.
