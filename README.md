@@ -3,7 +3,7 @@ Flux measurements after slurry application in two experiments. The following met
 
 # Maintainer
 Jesper Nørlem Kamp.
-Contact information here: <http://www.au.dk/JK@bce>.
+Contact information here: <http://www.au.dk/jk@bce>.
 
 # Directory information
 ## ALFAM2-app
