@@ -24,7 +24,7 @@ Data files are too large to include but scripts are still included here for part
 The script 'main.R' calls all others.
 
 ## scripts-MatLab
-R scripts for plotting all figures. 
+MatLab scripts for plotting all figures. 
 
 ## data-MatLab
 Data files are too large to include but, summary data files are provided here for reproducing figures.
