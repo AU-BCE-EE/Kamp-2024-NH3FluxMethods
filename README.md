@@ -22,3 +22,9 @@ Results are summarized in `ALFAM2-var/output`.
 R scripts for processing WT data to calculate measured ammonia emission. 
 Data files are too large to include but scripts are still included here for partial reproducibility. 
 The script 'main.R' calls all others.
+
+## scripts-MatLab
+R scripts for plotting all figures. 
+
+## data-MatLab
+Data files are too large to include but, summary data files are provided here for reproducing figures.
