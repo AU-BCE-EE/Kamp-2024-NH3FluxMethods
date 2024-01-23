@@ -3,13 +3,13 @@
 
 rm(list = ls())
 
-# Set release tag for download
-ghpath <- 'https://github.com/sashahafner/ALFAM2-data/raw/'
-rtag <- 'v2.23'
+## Set release tag for download
+#ghpath <- 'https://github.com/sashahafner/ALFAM2-data/raw/'
+#rtag <- 'v2.23'
 
-### Or, use specific commit
-##ghpath <- 'https://github.com/sashahafner/ALFAM2-data/raw/5646f11f8173d092faea6d17b0cc6abc9e74069d/'
-##rtag <- ''
+# Or, use specific commit
+ghpath <- 'https://github.com/sashahafner/ALFAM2-data/raw/4601e21737c1bed42d6edf6340c6edd798a2a59f/'
+rtag <- ''
 
 source('packages.R')
 source('functions.R')

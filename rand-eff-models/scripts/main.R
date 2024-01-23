@@ -4,4 +4,4 @@ rm(list = ls())
 
 source('packages.R')
 source('load.R')
-render('me_mods.Rmd', output_dir = '../stats')
+knit('mods.Rmd', output = '../stats/mods.md')

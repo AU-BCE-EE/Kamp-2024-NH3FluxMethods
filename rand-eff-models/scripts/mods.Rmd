@@ -5,16 +5,7 @@ author: Sasha D. Hafner
 date: "`r format(Sys.time(), '%d %B, %Y %H:%M')`"
 ---
 
-# 1. Take a look
-
-```{r}
-pdat[, meas.tech.3 := paste(meas.tech, meas.tech.det, treat)]
-ggplot(pdat, aes(country, e.rel.168, colour = meas.tech.3)) +
-  geom_jitter(height = 0, width = 0.2) +
-  theme(legend.position = 'top')
-```
-
-# 2. Mixed-effects models
+# Factor levels and 2 subsets
 
 ```{r}
 pdat[, meas.level := paste(meas.tech, meas.tech.det, treat)]
@@ -24,6 +15,7 @@ pdat[, meas.level := gsub('Wind tunnel NA', 'WT', meas.level)]
 pdat[, meas.level := gsub('bLS NA eGylle_bLS', 'bLS-CRDS', meas.level)]
 pdat[, meas.level := gsub('.+_FC_.+$', 'FC', meas.level)]
 pdat[, meas.level := gsub('diluted$', '', meas.level)]
+pdat[, meas.level := gsub('_traps_.+m$', '', meas.level)]
 d1 <- pdat[country == 'DK', ]
 d2 <- pdat[country == 'NL', ]
 ```
@@ -32,6 +24,8 @@ d2 <- pdat[country == 'NL', ]
 
 ```{r}
 d1mm <- d1[meas.tech2 == 'micro met', ]
+d1mm[, .(pmid, meas.level, e.rel.168)]
+d1mm[, .(pmid, meas.level, e.rel.final)]
 ```
 
 ```{r}
@@ -58,6 +52,8 @@ sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
 
 ```{r}
 d1en <- d1[meas.tech2 != 'micro met', ]
+d1en[, .(pmid, meas.level, e.rel.168)]
+d1en[, .(pmid, meas.level, e.rel.final)]
 ```
 
 ```{r}
@@ -77,22 +73,9 @@ VarCorr(m2)
 
 ```{r}
 d2mm <- d2[meas.tech2 == 'micro met', ]
-d2mm[, .(meas.level, e.rel.168)]
-d2mm[, .(meas.level, e.rel.final)]
+d2mm[, .(pmid, meas.level, e.rel.168)]
+d2mm[, .(pmid, meas.level, e.rel.final)]
 ```
-
-Drop 3 heights and add replicate data (or some representation of it) manually.
-**Note: IHF value does not match Table 3--update ALFAM2 data!**
-
-```{r}
-dimpinger <- data.table(meas.level = 'bLS-impinger', e.rel.final = c(0.125, 0.148, 0.171))
-sd(dimpinger[, e.rel.final])
-mean(dimpinger[, e.rel.final])
-d2mm <- d2mm[meas.level != 'bLS Acid traps eGylle_bLS_acid_traps_3heights', ]
-d2mm <- rbind(d2mm, dimpinger, fill = TRUE)
-d2mm[, .(meas.level, e.rel.final)]
-```
-
 
 ```{r}
 m1 <- lmer(e.rel.final ~ 1|meas.level, data = d2mm)
@@ -115,6 +98,8 @@ sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
 
 ```{r}
 d2en <- d2[meas.tech2 != 'micro met' & meas.level %in% c('WT 20', 'FC') & !grepl('diluted', treat), ]
+d2en[, .(pmid, meas.level, e.rel.168)]
+d2en[, .(pmid, meas.level, e.rel.final)]
 ```
 
 ```{r}
