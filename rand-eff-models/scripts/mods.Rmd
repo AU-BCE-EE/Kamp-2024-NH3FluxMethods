@@ -69,6 +69,12 @@ VarCorr(m2)
 100 * (10^(as.data.frame(VarCorr(m2))[, 5]) - 1)
 ```
 
+Total.
+
+```{r}
+sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
+```
+
 # II-WUR micromet
 
 ```{r}
@@ -89,6 +95,12 @@ summary(m2)
 VarCorr(m2)
 100 * (10^(as.data.frame(VarCorr(m2))[, 5]) - 1)
 ```
+
+```{r}
+sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
+```
+
+Total.
 
 ```{r}
 sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
@@ -120,4 +132,11 @@ summary(m2)
 VarCorr(m2)
 100 * (10^(as.data.frame(VarCorr(m2))[, 5]) - 1)
 ```
+
+Total.
+
+```{r}
+sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
+```
+
 

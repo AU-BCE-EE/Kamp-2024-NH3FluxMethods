@@ -2,7 +2,7 @@
 title: 'Mixed-effects models'
 output: pdf_document
 author: Sasha D. Hafner
-date: "23 January, 2024 06:25"
+date: "23 January, 2024 06:33"
 ---
 
 # Factor levels and 2 subsets
@@ -267,6 +267,17 @@ VarCorr(m2)
 ## [1] 74.763381  7.556652
 ```
 
+Total.
+
+
+```r
+sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
+```
+
+```
+## [1] 0.2445059
+```
+
 # II-WUR micromet
 
 
@@ -382,6 +393,17 @@ VarCorr(m2)
 ```
 ## [1] 25.14547 17.10940
 ```
+
+
+```r
+sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
+```
+
+```
+## [1] 0.1191408
+```
+
+Total.
 
 
 ```r
@@ -555,4 +577,16 @@ VarCorr(m2)
 ```
 ## [1] 64.16371 13.76005
 ```
+
+Total.
+
+
+```r
+sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
+```
+
+```
+## [1] 0.222439
+```
+
 
