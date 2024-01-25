@@ -108,6 +108,8 @@ sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
 
 # II-WUR enclosure
 
+Note that AER was 25 for all WT ("20" is application rate).
+
 ```{r}
 d2en <- d2[meas.tech2 != 'micro met' & meas.level %in% c('WT 20', 'FC') & !grepl('diluted', treat), ]
 d2en[, .(pmid, meas.level, e.rel.168)]

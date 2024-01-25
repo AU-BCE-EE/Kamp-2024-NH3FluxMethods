@@ -2,7 +2,7 @@
 title: 'Mixed-effects models'
 output: pdf_document
 author: Sasha D. Hafner
-date: "23 January, 2024 06:33"
+date: "25 January, 2024 11:47"
 ---
 
 # Factor levels and 2 subsets
@@ -415,6 +415,8 @@ sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
 ```
 
 # II-WUR enclosure
+
+Note that AER was 25 for all WT ("20" is application rate).
 
 
 ```r
