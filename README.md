@@ -3,7 +3,7 @@ Flux measurements after slurry application in two experiments. The following met
 
 # Maintainer
 Jesper Nørlem Kamp.
-Contact information here: <http://www.au.dk/jk@bce>.
+Contact information here: <http://www.au.dk/jk@bce.au.dk>.
 
 # Published paper
 This repo is associated with the following paper:
