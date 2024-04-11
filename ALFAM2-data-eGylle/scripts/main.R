@@ -8,7 +8,7 @@ rm(list = ls())
 #rtag <- 'v2.23'
 
 # Or, use specific commit
-ghpath <- 'https://github.com/sashahafner/ALFAM2-data/raw/4601e21737c1bed42d6edf6340c6edd798a2a59f/'
+ghpath <- 'https://github.com/sashahafner/ALFAM2-data/raw/fcf102525c88d5eb325d1b81348a5595a00f53a0/'
 rtag <- ''
 
 source('packages.R')

@@ -2,7 +2,7 @@
 title: 'Mixed-effects models'
 output: pdf_document
 author: Sasha D. Hafner
-date: "25 January, 2024 11:47"
+date: "11 April, 2024 14:23"
 ---
 
 # Factor levels and 2 subsets
@@ -30,10 +30,11 @@ d1mm[, .(pmid, meas.level, e.rel.168)]
 ```
 
 ```
-##    pmid meas.level e.rel.168
-## 1: 1936   bLS-CRDS   0.49741
-## 2: 1939  bLS-alpha   0.35479
-## 3: 1940  bLS-alpha   0.37910
+##     pmid meas.level e.rel.168
+##    <int>     <char>     <num>
+## 1:  1936   bLS-CRDS   0.49741
+## 2:  1939  bLS-alpha   0.35479
+## 3:  1940  bLS-alpha   0.37910
 ```
 
 ```r
@@ -41,10 +42,21 @@ d1mm[, .(pmid, meas.level, e.rel.final)]
 ```
 
 ```
-##    pmid meas.level e.rel.final
-## 1: 1936   bLS-CRDS     0.51214
-## 2: 1939  bLS-alpha     0.35754
-## 3: 1940  bLS-alpha     0.38189
+##     pmid meas.level e.rel.final
+##    <int>     <char>       <num>
+## 1:  1936   bLS-CRDS     0.51214
+## 2:  1939  bLS-alpha     0.35754
+## 3:  1940  bLS-alpha     0.38189
+```
+
+```r
+table(d1mm[, meas.level])
+```
+
+```
+## 
+## bLS-alpha  bLS-CRDS 
+##         2         1
 ```
 
 
@@ -142,7 +154,6 @@ sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
 ## [1] 0.09413859
 ```
 
-
 # I-AU enclosure
 
 
@@ -152,17 +163,18 @@ d1en[, .(pmid, meas.level, e.rel.168)]
 ```
 
 ```
-##     pmid meas.level e.rel.168
-##  1: 1911    WT AER7   0.41202
-##  2: 1912   WT AER25   0.46643
-##  3: 1913   WT AER25   0.44840
-##  4: 1914    WT AER7   0.33273
-##  5: 1915   WT AER25   0.46788
-##  6: 1916   WT AER54   0.55949
-##  7: 1917   WT AER54   0.53404
-##  8: 1941        DTM   0.14856
-##  9: 1942        DTM   0.15142
-## 10: 1943        DTM   0.16570
+##      pmid meas.level e.rel.168
+##     <int>     <char>     <num>
+##  1:  1911    WT AER7   0.41202
+##  2:  1912   WT AER25   0.46643
+##  3:  1913   WT AER25   0.44840
+##  4:  1914    WT AER7   0.33273
+##  5:  1915   WT AER25   0.46788
+##  6:  1916   WT AER54   0.55949
+##  7:  1917   WT AER54   0.53404
+##  8:  1941        DTM   0.14856
+##  9:  1942        DTM   0.15142
+## 10:  1943        DTM   0.16570
 ```
 
 ```r
@@ -170,17 +182,28 @@ d1en[, .(pmid, meas.level, e.rel.final)]
 ```
 
 ```
-##     pmid meas.level e.rel.final
-##  1: 1911    WT AER7     0.41477
-##  2: 1912   WT AER25     0.46939
-##  3: 1913   WT AER25     0.45111
-##  4: 1914    WT AER7     0.33480
-##  5: 1915   WT AER25     0.47110
-##  6: 1916   WT AER54     0.56296
-##  7: 1917   WT AER54     0.53740
-##  8: 1941        DTM     0.14856
-##  9: 1942        DTM     0.15142
-## 10: 1943        DTM     0.16570
+##      pmid meas.level e.rel.final
+##     <int>     <char>       <num>
+##  1:  1911    WT AER7     0.41477
+##  2:  1912   WT AER25     0.46939
+##  3:  1913   WT AER25     0.45111
+##  4:  1914    WT AER7     0.33480
+##  5:  1915   WT AER25     0.47110
+##  6:  1916   WT AER54     0.56296
+##  7:  1917   WT AER54     0.53740
+##  8:  1941        DTM     0.14856
+##  9:  1942        DTM     0.15142
+## 10:  1943        DTM     0.16570
+```
+
+```r
+table(d1en[, meas.level])
+```
+
+```
+## 
+##      DTM WT AER25 WT AER54  WT AER7 
+##        3        3        2        2
 ```
 
 
@@ -278,6 +301,147 @@ sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
 ## [1] 0.2445059
 ```
 
+# I-AU enclosure without DTM
+
+
+```r
+d1en <- d1[!meas.tech2 %in% c('micro met', 'DTM'), ]
+d1en[, .(pmid, meas.level, e.rel.168)]
+```
+
+```
+##     pmid meas.level e.rel.168
+##    <int>     <char>     <num>
+## 1:  1911    WT AER7   0.41202
+## 2:  1912   WT AER25   0.46643
+## 3:  1913   WT AER25   0.44840
+## 4:  1914    WT AER7   0.33273
+## 5:  1915   WT AER25   0.46788
+## 6:  1916   WT AER54   0.55949
+## 7:  1917   WT AER54   0.53404
+```
+
+```r
+d1en[, .(pmid, meas.level, e.rel.final)]
+```
+
+```
+##     pmid meas.level e.rel.final
+##    <int>     <char>       <num>
+## 1:  1911    WT AER7     0.41477
+## 2:  1912   WT AER25     0.46939
+## 3:  1913   WT AER25     0.45111
+## 4:  1914    WT AER7     0.33480
+## 5:  1915   WT AER25     0.47110
+## 6:  1916   WT AER54     0.56296
+## 7:  1917   WT AER54     0.53740
+```
+
+```r
+table(d1en[, meas.level])
+```
+
+```
+## 
+## WT AER25 WT AER54  WT AER7 
+##        3        2        2
+```
+
+
+```r
+m1 <- lmer(e.rel.168 ~ 1|meas.level, data = d1en)
+summary(m1)
+```
+
+```
+## Linear mixed model fit by REML ['lmerMod']
+## Formula: e.rel.168 ~ 1 | meas.level
+##    Data: d1en
+## 
+## REML criterion at convergence: -17.1
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -1.4776 -0.3257  0.1825  0.4113  1.1239 
+## 
+## Random effects:
+##  Groups     Name        Variance  Std.Dev.
+##  meas.level (Intercept) 0.0070868 0.08418 
+##  Residual               0.0009289 0.03048 
+## Number of obs: 7, groups:  meas.level, 3
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)     0.46       0.05   9.201
+```
+
+```r
+VarCorr(m1)
+```
+
+```
+##  Groups     Name        Std.Dev.
+##  meas.level (Intercept) 0.084183
+##  Residual               0.030478
+```
+
+
+```r
+m2 <- lmer(log10(e.rel.168) ~ 1|meas.level, data = d1en)
+summary(m2)
+```
+
+```
+## Linear mixed model fit by REML ['lmerMod']
+## Formula: log10(e.rel.168) ~ 1 | meas.level
+##    Data: d1en
+## 
+## REML criterion at convergence: -16.2
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -1.5603 -0.2152  0.1640  0.3463  1.1343 
+## 
+## Random effects:
+##  Groups     Name        Variance Std.Dev.
+##  meas.level (Intercept) 0.006532 0.08082 
+##  Residual               0.001187 0.03445 
+## Number of obs: 7, groups:  meas.level, 3
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept) -0.34336    0.04851  -7.079
+```
+
+```r
+VarCorr(m2)
+```
+
+```
+##  Groups     Name        Std.Dev.
+##  meas.level (Intercept) 0.080823
+##  Residual               0.034449
+```
+
+```r
+100 * (10^(as.data.frame(VarCorr(m2))[, 5]) - 1)
+```
+
+```
+## [1] 20.45462  8.25524
+```
+
+Total.
+
+
+```r
+sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
+```
+
+```
+## [1] 0.08785876
+```
+
 # II-WUR micromet
 
 
@@ -287,13 +451,14 @@ d2mm[, .(pmid, meas.level, e.rel.168)]
 ```
 
 ```
-##    pmid                        meas.level e.rel.168
-## 1: 1937                          bLS-CRDS   0.12683
-## 2: 1945 bLS CRDS avg. eGylle_bLS_avg_time        NA
-## 3: 1946         IHF Acid traps eGylle_IHF        NA
-## 4: 2248    bLS Acid traps eGylle_bLS_acid        NA
-## 5: 2249    bLS Acid traps eGylle_bLS_acid        NA
-## 6: 2250    bLS Acid traps eGylle_bLS_acid        NA
+##     pmid                        meas.level e.rel.168
+##    <int>                            <char>     <num>
+## 1:  1937                          bLS-CRDS   0.12683
+## 2:  1945 bLS CRDS avg. eGylle_bLS_avg_time        NA
+## 3:  1946         IHF Acid traps eGylle_IHF        NA
+## 4:  2248    bLS Acid traps eGylle_bLS_acid        NA
+## 5:  2249    bLS Acid traps eGylle_bLS_acid        NA
+## 6:  2250    bLS Acid traps eGylle_bLS_acid        NA
 ```
 
 ```r
@@ -301,13 +466,26 @@ d2mm[, .(pmid, meas.level, e.rel.final)]
 ```
 
 ```
-##    pmid                        meas.level e.rel.final
-## 1: 1937                          bLS-CRDS    0.128440
-## 2: 1945 bLS CRDS avg. eGylle_bLS_avg_time    0.124280
-## 3: 1946         IHF Acid traps eGylle_IHF    0.080097
-## 4: 2248    bLS Acid traps eGylle_bLS_acid    0.149360
-## 5: 2249    bLS Acid traps eGylle_bLS_acid    0.125170
-## 6: 2250    bLS Acid traps eGylle_bLS_acid    0.171890
+##     pmid                        meas.level e.rel.final
+##    <int>                            <char>       <num>
+## 1:  1937                          bLS-CRDS    0.128440
+## 2:  1945 bLS CRDS avg. eGylle_bLS_avg_time    0.124280
+## 3:  1946         IHF Acid traps eGylle_IHF    0.080097
+## 4:  2248    bLS Acid traps eGylle_bLS_acid    0.149360
+## 5:  2249    bLS Acid traps eGylle_bLS_acid    0.125170
+## 6:  2250    bLS Acid traps eGylle_bLS_acid    0.171890
+```
+
+```r
+table(d2mm[, meas.level])
+```
+
+```
+## 
+##    bLS Acid traps eGylle_bLS_acid bLS CRDS avg. eGylle_bLS_avg_time 
+##                                 3                                 1 
+##                          bLS-CRDS         IHF Acid traps eGylle_IHF 
+##                                 1                                 1
 ```
 
 
@@ -425,14 +603,15 @@ d2en[, .(pmid, meas.level, e.rel.168)]
 ```
 
 ```
-##    pmid meas.level e.rel.168
-## 1: 1927      WT 20   0.35403
-## 2: 1929      WT 20   0.38712
-## 3: 1933      WT 20   0.33742
-## 4: 2244         FC        NA
-## 5: 2245         FC        NA
-## 6: 2246         FC        NA
-## 7: 2247         FC        NA
+##     pmid meas.level e.rel.168
+##    <int>     <char>     <num>
+## 1:  1927      WT 20   0.35403
+## 2:  1929      WT 20   0.38712
+## 3:  1933      WT 20   0.33742
+## 4:  2244         FC        NA
+## 5:  2245         FC        NA
+## 6:  2246         FC        NA
+## 7:  2247         FC        NA
 ```
 
 ```r
@@ -440,14 +619,25 @@ d2en[, .(pmid, meas.level, e.rel.final)]
 ```
 
 ```
-##    pmid meas.level e.rel.final
-## 1: 1927      WT 20     0.35426
-## 2: 1929      WT 20     0.38741
-## 3: 1933      WT 20     0.33770
-## 4: 2244         FC     0.15707
-## 5: 2245         FC     0.16987
-## 6: 2246         FC     0.16513
-## 7: 2247         FC     0.22263
+##     pmid meas.level e.rel.final
+##    <int>     <char>       <num>
+## 1:  1927      WT 20     0.35426
+## 2:  1929      WT 20     0.38741
+## 3:  1933      WT 20     0.33770
+## 4:  2244         FC     0.15707
+## 5:  2245         FC     0.16987
+## 6:  2246         FC     0.16513
+## 7:  2247         FC     0.22263
+```
+
+```r
+table(d2en[, meas.level])
+```
+
+```
+## 
+##    FC WT 20 
+##     4     3
 ```
 
 
@@ -457,6 +647,7 @@ d2en[, .(meas.tech.orig, e.rel.168)]
 
 ```
 ##     meas.tech.orig e.rel.168
+##             <char>     <num>
 ## 1:     Wind tunnel   0.35403
 ## 2:     Wind tunnel   0.38712
 ## 3:     Wind tunnel   0.33742
@@ -472,6 +663,7 @@ d2en[, .(meas.level, e.rel.168)]
 
 ```
 ##    meas.level e.rel.168
+##        <char>     <num>
 ## 1:      WT 20   0.35403
 ## 2:      WT 20   0.38712
 ## 3:      WT 20   0.33742
@@ -487,6 +679,7 @@ d2en[, .(meas.level, e.rel.final)]
 
 ```
 ##    meas.level e.rel.final
+##        <char>       <num>
 ## 1:      WT 20     0.35426
 ## 2:      WT 20     0.38741
 ## 3:      WT 20     0.33770

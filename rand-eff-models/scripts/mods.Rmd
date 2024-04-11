@@ -26,6 +26,7 @@ d2 <- pdat[country == 'NL', ]
 d1mm <- d1[meas.tech2 == 'micro met', ]
 d1mm[, .(pmid, meas.level, e.rel.168)]
 d1mm[, .(pmid, meas.level, e.rel.final)]
+table(d1mm[, meas.level])
 ```
 
 ```{r}
@@ -47,13 +48,41 @@ Total.
 sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
 ```
 
-
 # I-AU enclosure
 
 ```{r}
 d1en <- d1[meas.tech2 != 'micro met', ]
 d1en[, .(pmid, meas.level, e.rel.168)]
 d1en[, .(pmid, meas.level, e.rel.final)]
+table(d1en[, meas.level])
+```
+
+```{r}
+m1 <- lmer(e.rel.168 ~ 1|meas.level, data = d1en)
+summary(m1)
+VarCorr(m1)
+```
+
+```{r}
+m2 <- lmer(log10(e.rel.168) ~ 1|meas.level, data = d1en)
+summary(m2)
+VarCorr(m2)
+100 * (10^(as.data.frame(VarCorr(m2))[, 5]) - 1)
+```
+
+Total.
+
+```{r}
+sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
+```
+
+# I-AU enclosure without DTM
+
+```{r}
+d1en <- d1[!meas.tech2 %in% c('micro met', 'DTM'), ]
+d1en[, .(pmid, meas.level, e.rel.168)]
+d1en[, .(pmid, meas.level, e.rel.final)]
+table(d1en[, meas.level])
 ```
 
 ```{r}
@@ -81,6 +110,7 @@ sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
 d2mm <- d2[meas.tech2 == 'micro met', ]
 d2mm[, .(pmid, meas.level, e.rel.168)]
 d2mm[, .(pmid, meas.level, e.rel.final)]
+table(d2mm[, meas.level])
 ```
 
 ```{r}
@@ -114,6 +144,7 @@ Note that AER was 25 for all WT ("20" is application rate).
 d2en <- d2[meas.tech2 != 'micro met' & meas.level %in% c('WT 20', 'FC') & !grepl('diluted', treat), ]
 d2en[, .(pmid, meas.level, e.rel.168)]
 d2en[, .(pmid, meas.level, e.rel.final)]
+table(d2en[, meas.level])
 ```
 
 ```{r}
