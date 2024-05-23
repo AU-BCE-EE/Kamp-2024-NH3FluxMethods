@@ -2,7 +2,7 @@
 title: 'Mixed-effects models'
 output: pdf_document
 author: Sasha D. Hafner
-date: "11 April, 2024 14:23"
+date: "23 May, 2024 11:43"
 ---
 
 # Factor levels and 2 subsets
@@ -310,15 +310,18 @@ d1en[, .(pmid, meas.level, e.rel.168)]
 ```
 
 ```
-##     pmid meas.level e.rel.168
-##    <int>     <char>     <num>
-## 1:  1911    WT AER7   0.41202
-## 2:  1912   WT AER25   0.46643
-## 3:  1913   WT AER25   0.44840
-## 4:  1914    WT AER7   0.33273
-## 5:  1915   WT AER25   0.46788
-## 6:  1916   WT AER54   0.55949
-## 7:  1917   WT AER54   0.53404
+##      pmid meas.level e.rel.168
+##     <int>     <char>     <num>
+##  1:  1911    WT AER7   0.41202
+##  2:  1912   WT AER25   0.46643
+##  3:  1913   WT AER25   0.44840
+##  4:  1914    WT AER7   0.33273
+##  5:  1915   WT AER25   0.46788
+##  6:  1916   WT AER54   0.55949
+##  7:  1917   WT AER54   0.53404
+##  8:  1941        DTM   0.14856
+##  9:  1942        DTM   0.15142
+## 10:  1943        DTM   0.16570
 ```
 
 ```r
@@ -326,15 +329,18 @@ d1en[, .(pmid, meas.level, e.rel.final)]
 ```
 
 ```
-##     pmid meas.level e.rel.final
-##    <int>     <char>       <num>
-## 1:  1911    WT AER7     0.41477
-## 2:  1912   WT AER25     0.46939
-## 3:  1913   WT AER25     0.45111
-## 4:  1914    WT AER7     0.33480
-## 5:  1915   WT AER25     0.47110
-## 6:  1916   WT AER54     0.56296
-## 7:  1917   WT AER54     0.53740
+##      pmid meas.level e.rel.final
+##     <int>     <char>       <num>
+##  1:  1911    WT AER7     0.41477
+##  2:  1912   WT AER25     0.46939
+##  3:  1913   WT AER25     0.45111
+##  4:  1914    WT AER7     0.33480
+##  5:  1915   WT AER25     0.47110
+##  6:  1916   WT AER54     0.56296
+##  7:  1917   WT AER54     0.53740
+##  8:  1941        DTM     0.14856
+##  9:  1942        DTM     0.15142
+## 10:  1943        DTM     0.16570
 ```
 
 ```r
@@ -343,8 +349,8 @@ table(d1en[, meas.level])
 
 ```
 ## 
-## WT AER25 WT AER54  WT AER7 
-##        3        2        2
+##      DTM WT AER25 WT AER54  WT AER7 
+##        3        3        2        2
 ```
 
 
@@ -358,21 +364,21 @@ summary(m1)
 ## Formula: e.rel.168 ~ 1 | meas.level
 ##    Data: d1en
 ## 
-## REML criterion at convergence: -17.1
+## REML criterion at convergence: -24.3
 ## 
 ## Scaled residuals: 
-##     Min      1Q  Median      3Q     Max 
-## -1.4776 -0.3257  0.1825  0.4113  1.1239 
+##      Min       1Q   Median       3Q      Max 
+## -1.56605 -0.40378  0.01123  0.33245  1.55594 
 ## 
 ## Random effects:
-##  Groups     Name        Variance  Std.Dev.
-##  meas.level (Intercept) 0.0070868 0.08418 
-##  Residual               0.0009289 0.03048 
-## Number of obs: 7, groups:  meas.level, 3
+##  Groups     Name        Variance Std.Dev.
+##  meas.level (Intercept) 0.028064 0.1675  
+##  Residual               0.000645 0.0254  
+## Number of obs: 10, groups:  meas.level, 4
 ## 
 ## Fixed effects:
 ##             Estimate Std. Error t value
-## (Intercept)     0.46       0.05   9.201
+## (Intercept)  0.38367    0.08416   4.559
 ```
 
 ```r
@@ -381,8 +387,8 @@ VarCorr(m1)
 
 ```
 ##  Groups     Name        Std.Dev.
-##  meas.level (Intercept) 0.084183
-##  Residual               0.030478
+##  meas.level (Intercept) 0.167524
+##  Residual               0.025397
 ```
 
 
@@ -396,21 +402,21 @@ summary(m2)
 ## Formula: log10(e.rel.168) ~ 1 | meas.level
 ##    Data: d1en
 ## 
-## REML criterion at convergence: -16.2
+## REML criterion at convergence: -19.4
 ## 
 ## Scaled residuals: 
-##     Min      1Q  Median      3Q     Max 
-## -1.5603 -0.2152  0.1640  0.3463  1.1343 
+##      Min       1Q   Median       3Q      Max 
+## -1.45940 -0.37882 -0.03926  0.33695  1.47468 
 ## 
 ## Random effects:
 ##  Groups     Name        Variance Std.Dev.
-##  meas.level (Intercept) 0.006532 0.08082 
-##  Residual               0.001187 0.03445 
-## Number of obs: 7, groups:  meas.level, 3
+##  meas.level (Intercept) 0.058782 0.24245 
+##  Residual               0.001001 0.03164 
+## Number of obs: 10, groups:  meas.level, 4
 ## 
 ## Fixed effects:
 ##             Estimate Std. Error t value
-## (Intercept) -0.34336    0.04851  -7.079
+## (Intercept)  -0.4601     0.1217  -3.782
 ```
 
 ```r
@@ -419,8 +425,8 @@ VarCorr(m2)
 
 ```
 ##  Groups     Name        Std.Dev.
-##  meas.level (Intercept) 0.080823
-##  Residual               0.034449
+##  meas.level (Intercept) 0.242450
+##  Residual               0.031637
 ```
 
 ```r
@@ -428,7 +434,7 @@ VarCorr(m2)
 ```
 
 ```
-## [1] 20.45462  8.25524
+## [1] 74.763381  7.556652
 ```
 
 Total.
@@ -439,7 +445,7 @@ sqrt(sum(as.data.frame(VarCorr(m2))[, 5]^2))
 ```
 
 ```
-## [1] 0.08785876
+## [1] 0.2445059
 ```
 
 # II-WUR micromet
@@ -456,9 +462,9 @@ d2mm[, .(pmid, meas.level, e.rel.168)]
 ## 1:  1937                          bLS-CRDS   0.12683
 ## 2:  1945 bLS CRDS avg. eGylle_bLS_avg_time        NA
 ## 3:  1946         IHF Acid traps eGylle_IHF        NA
-## 4:  2248    bLS Acid traps eGylle_bLS_acid        NA
-## 5:  2249    bLS Acid traps eGylle_bLS_acid        NA
-## 6:  2250    bLS Acid traps eGylle_bLS_acid        NA
+## 4:  2405    bLS Acid traps eGylle_bLS_acid        NA
+## 5:  2406    bLS Acid traps eGylle_bLS_acid        NA
+## 6:  2407    bLS Acid traps eGylle_bLS_acid        NA
 ```
 
 ```r
@@ -471,9 +477,9 @@ d2mm[, .(pmid, meas.level, e.rel.final)]
 ## 1:  1937                          bLS-CRDS    0.128440
 ## 2:  1945 bLS CRDS avg. eGylle_bLS_avg_time    0.124280
 ## 3:  1946         IHF Acid traps eGylle_IHF    0.080097
-## 4:  2248    bLS Acid traps eGylle_bLS_acid    0.149360
-## 5:  2249    bLS Acid traps eGylle_bLS_acid    0.125170
-## 6:  2250    bLS Acid traps eGylle_bLS_acid    0.171890
+## 4:  2405    bLS Acid traps eGylle_bLS_acid    0.149360
+## 5:  2406    bLS Acid traps eGylle_bLS_acid    0.125170
+## 6:  2407    bLS Acid traps eGylle_bLS_acid    0.171890
 ```
 
 ```r
