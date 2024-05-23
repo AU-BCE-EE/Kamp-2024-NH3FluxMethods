@@ -3,7 +3,7 @@
 idat$pmid <- as.character(idat$pmid)
 pdat$pmid <- as.character(pdat$pmid)
 
-pdat$app.date <- as.character(pdat$app.start, format = '%Y-%m-%d')
+pdat$app.date <- format(pdat$app.start, format = '%Y-%m-%d')
 
 # Subset to 2 trials in paper
 pdat <- subset(pdat, proj == 'eGylle' & app.date %in% c('2021-08-20', '2021-11-09'))

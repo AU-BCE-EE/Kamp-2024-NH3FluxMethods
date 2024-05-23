@@ -3,7 +3,7 @@ title: 'Model call record'
 output: pdf_document
 classoption: landscape
 author: Sasha D. Hafner
-date: "12 May, 2023 16:03"
+date: "23 May, 2024 11:42"
 ---
 
 # Initial stuff
@@ -15,7 +15,7 @@ packageVersion('ALFAM2')
 ```
 
 ```
-## [1] '2.22'
+## [1] '3.17'
 ```
 
 Parameter values.
@@ -104,33 +104,6 @@ dpred1 <- alfam2(as.data.frame(bdat), pars = ALFAM2pars01, app.name = 'tan.app',
 ## User-supplied parameters are being used.
 ```
 
-```
-## Warning in alfam2(as.data.frame(bdat), pars = ALFAM2pars01, app.name = "tan.app", : Running with 16 parameters. Dropped 4 with no match.
-## These secondary parameters have been dropped:
-##   incorp.deep.f4
-##   incorp.shallow.f4
-##   app.mthd.bc.r1
-##   incorp.deep.r3
-## 
-## These secondary parameters are being used:
-##   int.f0
-##   int.r1
-##   int.r2
-##   int.r3
-##   app.mthd.os.f0
-##   app.rate.f0
-##   man.dm.f0
-##   man.dm.r1
-##   air.temp.r1
-##   wind.2m.r1
-##   man.ph.r1
-##   air.temp.r3
-##   app.mthd.os.r3
-##   man.ph.r3
-##   rain.rate.r2
-##   rain.cum.r3
-```
-
 ```r
 dpred2 <- alfam2(as.data.frame(bdat), pars = ALFAM2pars02, app.name = 'tan.app', time.name = 'cta', group = 'pmid', prep = TRUE)
 ```
@@ -140,34 +113,34 @@ dpred2 <- alfam2(as.data.frame(bdat), pars = ALFAM2pars02, app.name = 'tan.app',
 ```
 
 ```
-## Warning in alfam2(as.data.frame(bdat), pars = ALFAM2pars02, app.name = "tan.app", : Running with 13 parameters. Dropped 11 with no match.
+## Warning in alfam2(as.data.frame(bdat), pars = ALFAM2pars02, app.name = "tan.app", : Running with 23 parameters. Dropped 1 with no match.
 ## These secondary parameters have been dropped:
-##   man.source.pig.f0
-##   app.mthd.cs.f0
-##   app.mthd.bc.r1
-##   app.mthd.ts.r1
 ##   ts.cereal.hght.r1
-##   app.mthd.bc.r3
-##   app.mthd.cs.r3
-##   incorp.shallow.f4
-##   incorp.shallow.r3
-##   incorp.deep.f4
-##   incorp.deep.r3
 ## 
 ## These secondary parameters are being used:
 ##   int.f0
 ##   app.mthd.os.f0
 ##   app.rate.ni.f0
 ##   man.dm.f0
+##   man.source.pig.f0
+##   app.mthd.cs.f0
 ##   int.r1
+##   app.mthd.bc.r1
 ##   man.dm.r1
 ##   air.temp.r1
 ##   wind.2m.r1
+##   app.mthd.ts.r1
 ##   man.ph.r1
 ##   int.r2
 ##   rain.rate.r2
 ##   int.r3
+##   app.mthd.bc.r3
+##   app.mthd.cs.r3
 ##   man.ph.r3
+##   incorp.shallow.f4
+##   incorp.shallow.r3
+##   incorp.deep.f4
+##   incorp.deep.r3
 ```
 
 Add to bLS data frame
@@ -224,12 +197,11 @@ dpred1b <- alfam2(as.data.frame(bindat), pars = ALFAM2pars01, app.name = 'tan.ap
 ```
 
 ```
-## Warning in alfam2(as.data.frame(bindat), pars = ALFAM2pars01, app.name = "tan.app", : Running with 14 parameters. Dropped 6 with no match.
+## Warning in alfam2(as.data.frame(bindat), pars = ALFAM2pars01, app.name = "tan.app", : Running with 15 parameters. Dropped 5 with no match.
 ## These secondary parameters have been dropped:
 ##   app.rate.f0
 ##   incorp.deep.f4
 ##   incorp.shallow.f4
-##   app.mthd.bc.r1
 ##   incorp.deep.r3
 ##   rain.cum.r3
 ## 
@@ -240,6 +212,7 @@ dpred1b <- alfam2(as.data.frame(bindat), pars = ALFAM2pars01, app.name = 'tan.ap
 ##   int.r3
 ##   app.mthd.os.f0
 ##   man.dm.f0
+##   app.mthd.bc.r1
 ##   man.dm.r1
 ##   air.temp.r1
 ##   wind.2m.r1
@@ -259,15 +232,10 @@ dpred2b <- alfam2(as.data.frame(bindat), pars = ALFAM2pars02, app.name = 'tan.ap
 ```
 
 ```
-## Warning in alfam2(as.data.frame(bindat), pars = ALFAM2pars02, app.name = "tan.app", : Running with 13 parameters. Dropped 11 with no match.
+## Warning in alfam2(as.data.frame(bindat), pars = ALFAM2pars02, app.name = "tan.app", : Running with 18 parameters. Dropped 6 with no match.
 ## These secondary parameters have been dropped:
 ##   man.source.pig.f0
-##   app.mthd.cs.f0
-##   app.mthd.bc.r1
-##   app.mthd.ts.r1
 ##   ts.cereal.hght.r1
-##   app.mthd.bc.r3
-##   app.mthd.cs.r3
 ##   incorp.shallow.f4
 ##   incorp.shallow.r3
 ##   incorp.deep.f4
@@ -278,14 +246,19 @@ dpred2b <- alfam2(as.data.frame(bindat), pars = ALFAM2pars02, app.name = 'tan.ap
 ##   app.mthd.os.f0
 ##   app.rate.ni.f0
 ##   man.dm.f0
+##   app.mthd.cs.f0
 ##   int.r1
+##   app.mthd.bc.r1
 ##   man.dm.r1
 ##   air.temp.r1
 ##   wind.2m.r1
+##   app.mthd.ts.r1
 ##   man.ph.r1
 ##   int.r2
 ##   rain.rate.r2
 ##   int.r3
+##   app.mthd.bc.r3
+##   app.mthd.cs.r3
 ##   man.ph.r3
 ```
 
