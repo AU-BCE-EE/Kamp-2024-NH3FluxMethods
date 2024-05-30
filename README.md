@@ -49,10 +49,8 @@ See the value under "Repo source" for the results themselves, and "Repo scripts"
 
 | Paper component                    |  Repo source                             |  Repo scripts                                                            |
 |-----------------                   |-----------------                         |---------------                                                           |
-|                                    |                                          |                                                                          |
-|                                    |                                          |                                                                          |
-|                                    |                                          |                                                                          |
-|                                    |                                          |                                                                          |
+| I-AU figures                       |                                          | `scripts-MatLab/eGylle_2_GitHub.m`                                       |
+| II-WUR figures                     |                                          | `scripts-MatLab/eGylle_3_GitHub.m`                                       |
 | Sect. 3.1 AER F test, p = 0.0025   | `AER-stats/stats/stats.pdf`              | `AER-stats/scripts/stats.Rmd` (run `AER-stats/scripts/main.R`)           |
 | ALFAM2 model predictions           | `ALFAM2-app/output/ALFAM2_emis.csv`      | `ALFAM2-app/scripts/export.R` (run `ALFAM2-app/scripts/main.R`)          |
 | All random-effects model results   | `rand-eff-models/stats/mods.md`          | `rand-eff-models/scripts/mods.Rmd` (run `rand-eff-models/scripts/main.R`)|
