@@ -8,9 +8,10 @@ Contact information here: <http://www.au.dk/jk@bce.au.dk>.
 # Published paper
 This repo is associated with the following paper:
 
-Kamp, J.N., ...
-
-(fill in details once published)
+Jesper N. Kamp, Sasha D. Hafner, Jan Huijsmans, Koen van Boheemen, Hannah Götze, Andreas Pacholski, Johanna Pedersen
+Comparison of two micrometeorological and three enclosure methods for measuring ammonia emission after slurry application in two field experiments.
+Agricultural and Forest Meteorology, Volume 354, 110077, 2024
+https://doi.org/10.1016/j.agrformet.2024.110077
 
 # Directory information
 ## ALFAM2-app
